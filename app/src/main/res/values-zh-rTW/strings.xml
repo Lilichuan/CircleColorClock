@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="back">回主畫面</string>
+    <string name="showClock">顯示時鐘數字?</string>
+    <string name="setting">設定</string>
+</resources>

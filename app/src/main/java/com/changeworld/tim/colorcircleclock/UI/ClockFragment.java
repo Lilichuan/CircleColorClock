@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.changeworld.tim.colorcircleclock.Data.Setting;
+import com.changeworld.tim.colorcircleclock.MainActivity;
 import com.changeworld.tim.colorcircleclock.R;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +51,13 @@ public class ClockFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_clock, container, false);
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity activity = (MainActivity)getActivity();
+                activity.changePage(MainActivity.PAGE_SET);
+            }
+        });
         init(root);
         return root;
     }
@@ -56,7 +65,13 @@ public class ClockFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        startDrawTimeText();
+        Setting setting = new Setting(getContext());
+        if(setting.isShowClock()){
+            startDrawTimeText();
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     private void init(View root){
@@ -95,8 +110,10 @@ public class ClockFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        timer.purge();
-        timer.cancel();
-        timer = null;
+        if(timer != null){
+            timer.purge();
+            timer.cancel();
+            timer = null;
+        }
     }
 }

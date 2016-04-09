@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ColorCircleClock</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="back">Back</string>
+    <string name="showClock">Show clock?</string>
+    <string name="setting">Setting</string>
 </resources>
