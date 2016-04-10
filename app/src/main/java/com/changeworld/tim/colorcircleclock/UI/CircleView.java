@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -100,9 +99,6 @@ public class CircleView extends View{
                     canvas.drawArc(rectF, totalUnitDegree*i, unitDegree, false, paint );
                 }
             }
-
-            Log.d("DrawCircleTool", String.format("selectUnit=%d, arcCount=%d, totalUnitDegree=%f, unitDegree=%f",
-                    selectUnit, arcCount, totalUnitDegree, unitDegree));
             canvas.save();
         }
 
