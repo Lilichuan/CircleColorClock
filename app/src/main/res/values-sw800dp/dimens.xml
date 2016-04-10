@@ -2,5 +2,6 @@
 <resources>
     <dimen name="circle_h">750dp</dimen>
     <dimen name="split_circle_h">660dp</dimen>
+
     <dimen name="clockTextSize">40sp</dimen>
 </resources>

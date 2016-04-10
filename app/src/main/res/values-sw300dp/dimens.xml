@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="circle_h">290dp</dimen>
-    <dimen name="split_circle_h">270dp</dimen>
+    <dimen name="split_circle_h">230dp</dimen>
     <dimen name="clockTextSize">35sp</dimen>
 </resources>
