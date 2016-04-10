@@ -48,7 +48,7 @@ public class Setting {
     }
 
     public boolean getShow2Layer(){
-        return sharedPreferences.getBoolean(KEY_DISPLAY_2_LAYER, true);
+        return sharedPreferences.getBoolean(KEY_DISPLAY_2_LAYER, false);
     }
 
     /*

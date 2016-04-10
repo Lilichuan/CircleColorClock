@@ -84,6 +84,7 @@ public class SetFragment extends Fragment {
 
     private void initSecondCircleSettingView(View root){
         secondLayerArea = root.findViewById(R.id.secondLayerArea);
+        secondLayerArea.setVisibility(setting.getShow2Layer() ? View.VISIBLE : View.GONE);
         splitCountText = (TextView)root.findViewById(R.id.splitCountText);
         circleSplitSeekBar = (SeekBar)root.findViewById(R.id.splitCountSeekBar);
         circleSplitSeekBar.setMax(Setting.CIRCLE_SPLIT_MAX);
