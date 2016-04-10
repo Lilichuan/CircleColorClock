@@ -1,13 +1,11 @@
 package com.changeworld.tim.colorcircleclock.UI;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -53,11 +51,10 @@ public class CircleView extends View{
         private Paint paint ,selectPaint;
         private RectF rectF;
 
-        private int selectUnit = 0;//start with 1
+        private int selectUnit = 0;
 
-        private int separateDegree = 3;
-        //private int diameter, radius;
         private int arcCount, totalUnitDegree, unitDegree;
+        private int PAINT_STROKE_W = 20, SEPARATE_DEGREE = 3;
 
         public DrawCircleTool(int count){
             paint = new Paint();
@@ -74,23 +71,23 @@ public class CircleView extends View{
 
             arcCount = count;
             totalUnitDegree = 360 / count;
-            if(totalUnitDegree <= separateDegree){
-                separateDegree = totalUnitDegree / 2;
+            if(totalUnitDegree <= SEPARATE_DEGREE){
+                SEPARATE_DEGREE = totalUnitDegree / 2;
             }
 
 
-            unitDegree = totalUnitDegree - separateDegree;
+            unitDegree = totalUnitDegree - SEPARATE_DEGREE;
         }
 
         public void drawCanvas(Canvas canvas){
 
             if(rectF == null){
-                rectF = new RectF(0, 0, canvas.getWidth(), getHeight());
+                rectF = new RectF(PAINT_STROKE_W, PAINT_STROKE_W, canvas.getWidth() - PAINT_STROKE_W, getHeight() - PAINT_STROKE_W);
             }
 
             selectUnit++;
             if(selectUnit > arcCount){
-                selectUnit = 1;
+                selectUnit = 0;
             }
 
             for (int i = 0 ; i < arcCount ;i++){
@@ -102,8 +99,8 @@ public class CircleView extends View{
                 }
             }
 
-            Log.d("DrawCircleTool", String.format("selectUnit=%d, arcCount=%d, totalUnitDegree=%d, unitDegree=%d",
-                    selectUnit, arcCount, totalUnitDegree, unitDegree));
+//            Log.d("DrawCircleTool", String.format("selectUnit=%d, arcCount=%d, totalUnitDegree=%d, unitDegree=%d",
+//                    selectUnit, arcCount, totalUnitDegree, unitDegree));
             canvas.save();
         }
 

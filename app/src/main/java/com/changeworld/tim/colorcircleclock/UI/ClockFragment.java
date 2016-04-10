@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -30,7 +29,6 @@ public class ClockFragment extends Fragment {
     private Timer timer;
     private static TextView textView;
     private Setting setting;
-    private View mainCircle;
     private static boolean DISPLAY_2ND_CIRCLE ;
 
     private static CircleView splitCircle;
@@ -51,9 +49,6 @@ public class ClockFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -90,8 +85,6 @@ public class ClockFragment extends Fragment {
         textView = (TextView)root.findViewById(R.id.text);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
         textView.setTypeface(type);
-        mainCircle = root.findViewById(R.id.mainCircle);
-
         initSplitCircle(root);
     }
 
@@ -131,7 +124,6 @@ public class ClockFragment extends Fragment {
             textView.setText(createNowTimeText());
             if(DISPLAY_2ND_CIRCLE){
                 splitCircle.invalidate();
-                //splitCircle.draw(drawCircleTool.outputCanvas());
             }
 
             super.handleMessage(msg);

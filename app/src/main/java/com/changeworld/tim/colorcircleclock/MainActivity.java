@@ -3,10 +3,8 @@ package com.changeworld.tim.colorcircleclock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.PermissionChecker;
 import android.view.WindowManager;
 
-import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.SetFragment;
 

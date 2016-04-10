@@ -18,7 +18,7 @@
         android:layout_width="@dimen/split_circle_h"
         android:layout_height="@dimen/split_circle_h"
         android:layout_centerInParent="true"
-        android:background="@color/white"/>
+        android:background="#00000000"/>
 
 
     <TextView
