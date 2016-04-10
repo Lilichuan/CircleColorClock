@@ -4,5 +4,7 @@
     <string name="no">否</string>
     <string name="back">回主畫面</string>
     <string name="showClock">顯示時鐘數字?</string>
+    <string name="display_2nd_layer">顯示第二層圓圈</string>
     <string name="setting">設定</string>
+    <string name="secondLayerSplitCount">第二圈分裂數量:%d</string>
 </resources>

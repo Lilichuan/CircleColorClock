@@ -4,6 +4,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="back">Back</string>
-    <string name="showClock">Show clock?</string>
+    <string name="showClock">Show clock number</string>
+    <string name="display_2nd_layer">Display 2 circles</string>
+    <string name="secondLayerSplitCount">Second circle display count:%d</string>
     <string name="setting">Setting</string>
 </resources>

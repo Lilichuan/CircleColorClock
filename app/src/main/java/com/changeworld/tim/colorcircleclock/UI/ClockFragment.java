@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -79,6 +80,9 @@ public class ClockFragment extends Fragment {
         textView = (TextView)root.findViewById(R.id.text);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
         textView.setTypeface(type);
+
+        ImageView imageView = (ImageView)root.findViewById(R.id.mainCircle);
+
     }
 
     private static final String FORMAT = "HH:mm:ss";
