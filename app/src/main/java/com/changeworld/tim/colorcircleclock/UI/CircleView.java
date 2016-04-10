@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -53,8 +54,9 @@ public class CircleView extends View{
 
         private int selectUnit = 0;
 
-        private int arcCount, totalUnitDegree, unitDegree;
-        private int PAINT_STROKE_W = 20, SEPARATE_DEGREE = 3;
+        private int arcCount;
+        private float totalUnitDegree, unitDegree, SEPARATE_DEGREE = 3;
+        private int PAINT_STROKE_W = 20 ;
 
         public DrawCircleTool(int count){
             paint = new Paint();
@@ -70,7 +72,7 @@ public class CircleView extends View{
             selectPaint.setStyle(Paint.Style.STROKE);
 
             arcCount = count;
-            totalUnitDegree = 360 / count;
+            totalUnitDegree = ((float) (360)) / count;
             if(totalUnitDegree <= SEPARATE_DEGREE){
                 SEPARATE_DEGREE = totalUnitDegree / 2;
             }
@@ -86,7 +88,7 @@ public class CircleView extends View{
             }
 
             selectUnit++;
-            if(selectUnit > arcCount){
+            if(selectUnit + 1 > arcCount){
                 selectUnit = 0;
             }
 
@@ -99,8 +101,8 @@ public class CircleView extends View{
                 }
             }
 
-//            Log.d("DrawCircleTool", String.format("selectUnit=%d, arcCount=%d, totalUnitDegree=%d, unitDegree=%d",
-//                    selectUnit, arcCount, totalUnitDegree, unitDegree));
+            Log.d("DrawCircleTool", String.format("selectUnit=%d, arcCount=%d, totalUnitDegree=%f, unitDegree=%f",
+                    selectUnit, arcCount, totalUnitDegree, unitDegree));
             canvas.save();
         }
 
