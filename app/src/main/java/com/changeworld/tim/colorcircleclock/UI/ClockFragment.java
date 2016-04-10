@@ -1,6 +1,9 @@
 package com.changeworld.tim.colorcircleclock.UI;
 
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +30,10 @@ public class ClockFragment extends Fragment {
     private static SimpleDateFormat format;
     private Timer timer;
     private static TextView textView;
+    private Setting setting;
+
+    private static ImageView splitCircle;
+
 
     public ClockFragment() {
         // Required empty public constructor
@@ -59,7 +66,9 @@ public class ClockFragment extends Fragment {
                 activity.changePage(MainActivity.PAGE_SET);
             }
         });
+        setting = new Setting(getContext());
         init(root);
+        initSplitCircle(root);
         return root;
     }
 
@@ -81,7 +90,18 @@ public class ClockFragment extends Fragment {
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
         textView.setTypeface(type);
 
-        ImageView imageView = (ImageView)root.findViewById(R.id.mainCircle);
+
+    }
+
+    private void initSplitCircle(View root){
+        splitCircle = (ImageView)root.findViewById(R.id.splitCircle);
+
+        if(!setting.getShow2Layer()){
+            splitCircle.setVisibility(View.GONE);
+            return;
+        }
+
+
 
     }
 
@@ -119,5 +139,39 @@ public class ClockFragment extends Fragment {
             timer.cancel();
             timer = null;
         }
+    }
+
+    //Draw 2nd circle
+    private class DrawCircleTool{
+
+        private Paint paint;
+
+        private int separateDegree = 3;
+        private int diameter, radius;
+        private int count, totalUnitDegree, unitDegree;
+
+        public DrawCircleTool(int arcCount, int diameter){
+            paint = new Paint();
+            paint.setColor(Color.parseColor("#ff6a13"));
+
+            this.diameter = diameter;
+            radius = diameter / 2;
+
+            count = arcCount;
+            totalUnitDegree = 360 / count;
+            if(totalUnitDegree <= separateDegree){
+                separateDegree = totalUnitDegree / 2;
+            }
+
+            unitDegree = totalUnitDegree - separateDegree;
+        }
+
+        public Canvas outputCanvas(){
+            Canvas canvas = new Canvas();
+
+
+            return canvas;
+        }
+
     }
 }
