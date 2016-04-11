@@ -21,6 +21,11 @@ public class Setting {
     public static final int CIRCLE_SPLIT_MAX = 180;
     public static final int CIRCLE_SPLIT_MINI = 3;
 
+    public static final String COLOR_ORANGE = "#ff6a13";
+    public static final String COLOR_GREEN = "#81c784";
+    public static final String PURPLE = "#ba68c8";
+
+
 
     public Setting(Context context){
         sharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);

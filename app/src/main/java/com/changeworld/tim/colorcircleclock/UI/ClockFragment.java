@@ -55,11 +55,13 @@ public class ClockFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_clock, container, false);
-        root.setOnClickListener(new View.OnClickListener() {
+
+        root.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 MainActivity activity = (MainActivity)getActivity();
                 activity.changePage(MainActivity.PAGE_SET);
+                return false;
             }
         });
 
