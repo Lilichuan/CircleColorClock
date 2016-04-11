@@ -6,9 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
@@ -78,6 +81,7 @@ public class SetFragment extends Fragment {
         });
 
         initSecondCircleSettingView(root);
+        initColorSelect(root);
 
         return root;
     }
@@ -115,6 +119,58 @@ public class SetFragment extends Fragment {
 
     private void setSplitText(int count){
         splitCountText.setText(getString(R.string.secondLayerSplitCount, count));
+    }
+
+    private void initColorSelect(View root){
+        String[] colors = getResources().getStringArray(R.array.colors);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.selection_textview, colors);
+        Spinner spinner = (Spinner)root.findViewById(R.id.select_color);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String s;
+                switch (position){
+                    case 0:
+                        s = Setting.COLOR_GREEN;
+                        break;
+                    case 1:
+                        s = Setting.COLOR_PURPLE;
+                        break;
+                    case 2:
+                        s = Setting.COLOR_ORANGE;
+                        break;
+                    default:
+                        s = Setting.COLOR_ORANGE;
+                }
+
+                setting.setColor(s);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        int position;
+
+        switch (setting.getColor()){
+            case Setting.COLOR_GREEN:
+                position = 0;
+                break;
+            case Setting.COLOR_ORANGE:
+                position = 2;
+                break;
+            case Setting.COLOR_PURPLE:
+                position = 1;
+                break;
+            default:
+                position = 2;
+        }
+
+
+        spinner.setSelection(position);
     }
 
 }

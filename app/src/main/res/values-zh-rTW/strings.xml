@@ -7,4 +7,12 @@
     <string name="display_2nd_layer">顯示第二層圓圈</string>
     <string name="setting">設定</string>
     <string name="secondLayerSplitCount">第二圈分裂數量:%d</string>
+    <string name="main_theme_color">主題顏色</string>
+
+    <string-array name="colors">
+        <item>綠色</item>
+        <item>紫色</item>
+        <item>橘色</item>
+    </string-array>
+
 </resources>

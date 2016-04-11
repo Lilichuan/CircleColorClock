@@ -48,6 +48,15 @@
 
         </LinearLayout>
 
+        <TextView
+            style="@style/set_title_text"
+            android:text="@string/main_theme_color"/>
+
+        <Spinner
+            android:id="@+id/select_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/back"
             style="@style/set_title_text"

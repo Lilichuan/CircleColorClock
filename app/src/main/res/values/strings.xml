@@ -8,4 +8,13 @@
     <string name="display_2nd_layer">Display 2 circles</string>
     <string name="secondLayerSplitCount">Second circle display count:%d</string>
     <string name="setting">Setting</string>
+
+    <string name="main_theme_color">Main theme color</string>
+
+    <string-array name="colors">
+        <item>Green</item>
+        <item>Purple</item>
+        <item>Orange</item>
+    </string-array>
+
 </resources>
