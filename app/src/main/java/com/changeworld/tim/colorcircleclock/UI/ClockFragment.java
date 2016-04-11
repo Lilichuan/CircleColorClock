@@ -30,7 +30,7 @@ public class ClockFragment extends Fragment {
     private Timer timer;
     private static TextView textView;
     private Setting setting;
-    private static boolean DISPLAY_2ND_CIRCLE ;
+    private static boolean DISPLAY_2ND_CIRCLE, SHOW_CLOCK ;
 
     private static CircleView splitCircle;
 
@@ -73,7 +73,7 @@ public class ClockFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(setting.isShowClock()){
+        if(DISPLAY_2ND_CIRCLE || SHOW_CLOCK){
             startDrawTimeText();
         }else {
             textView.setVisibility(View.INVISIBLE);
@@ -84,6 +84,7 @@ public class ClockFragment extends Fragment {
     private void init(View root){
         setting = new Setting(getContext());
         DISPLAY_2ND_CIRCLE = setting.getShow2Layer();
+        SHOW_CLOCK = setting.isShowClock();
         format = new SimpleDateFormat(FORMAT , Locale.US);
         textView = (TextView)root.findViewById(R.id.text);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
