@@ -32,7 +32,7 @@ public class CircleView extends View{
     public void init(){
         Setting setting = new Setting(getContext());
         if(setting.getShow2Layer()){
-            drawCircleTool = new DrawCircleTool(setting.get2ndLayerSplit());
+            drawCircleTool = new DrawCircleTool(setting.get2ndLayerSplit(), setting.getColor());
         }
 
     }
@@ -57,16 +57,32 @@ public class CircleView extends View{
         private float totalUnitDegree, unitDegree, SEPARATE_DEGREE = 3;
         private int PAINT_STROKE_W = 20 ;
 
-        public DrawCircleTool(int count){
+        public DrawCircleTool(int count, String color){
             paint = new Paint();
             paint.setAntiAlias(true);
-            paint.setColor(Color.parseColor("#ffa16a"));
+            paint.setColor(Color.parseColor(color));
             paint.setStrokeWidth((float) 20.0);
             paint.setStyle(Paint.Style.STROKE);
 
+            String selectColor;
+
+            switch (color){
+                case Setting.COLOR_GREEN:
+                    selectColor = "#4caf50";
+                    break;
+                case Setting.COLOR_ORANGE:
+                    selectColor = "#ff6a13";
+                    break;
+                case Setting.PURPLE:
+                    selectColor = "#9c27b0";
+                    break;
+                default:
+                    selectColor = "#ffffff";
+            }
+
             selectPaint = new Paint();
             selectPaint.setAntiAlias(true);
-            selectPaint.setColor(Color.parseColor("#ff6a13"));
+            selectPaint.setColor(Color.parseColor(selectColor));
             selectPaint.setStrokeWidth((float) 20.0);
             selectPaint.setStyle(Paint.Style.STROKE);
 

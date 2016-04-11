@@ -5,13 +5,11 @@
     tools:context="com.changeworld.tim.colorcircleclock.UI.ClockFragment"
     android:background="@color/black">
 
-    <ImageView
+    <com.changeworld.tim.colorcircleclock.UI.BigCircleView
         android:id="@+id/mainCircle"
         android:layout_width="@dimen/circle_h"
         android:layout_height="@dimen/circle_h"
-        android:layout_centerInParent="true"
-        android:background="@drawable/circle"
-        android:scaleType="fitXY"/>
+        android:layout_centerInParent="true"/>
 
     <com.changeworld.tim.colorcircleclock.UI.CircleView
         android:id="@+id/splitCircle"

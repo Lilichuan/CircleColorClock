@@ -2,6 +2,7 @@ package com.changeworld.tim.colorcircleclock.UI;
 
 
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -87,6 +88,7 @@ public class ClockFragment extends Fragment {
         textView = (TextView)root.findViewById(R.id.text);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
         textView.setTypeface(type);
+        textView.setTextColor(Color.parseColor(setting.getColor()));
         initSplitCircle(root);
     }
 

@@ -2,6 +2,7 @@ package com.changeworld.tim.colorcircleclock.Data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.changeworld.tim.colorcircleclock.MainActivity;
 
@@ -17,6 +18,7 @@ public class Setting {
     private static final String KEY_SHOW_CLOCK = "showClock";
     private static final String KEY_DISPLAY_2_LAYER = "secondLayer";
     private static final String KEY_2_LAYER_COUNT = "secondLayerCount";
+    private static final String KEY_COLOR = "color";
 
     public static final int CIRCLE_SPLIT_MAX = 180;
     public static final int CIRCLE_SPLIT_MINI = 3;
@@ -69,5 +71,20 @@ public class Setting {
 
     public int get2ndLayerSplit(){
         return sharedPreferences.getInt(KEY_2_LAYER_COUNT, CIRCLE_SPLIT_MINI);
+    }
+
+    /*
+    *
+    * Color
+    * */
+    public void setColor(String colorCode){
+        if(TextUtils.isEmpty(colorCode)){
+            return;
+        }
+        sharedPreferences.edit().putString(KEY_COLOR,colorCode).apply();
+    }
+
+    public String getColor(){
+        return sharedPreferences.getString(KEY_COLOR, COLOR_ORANGE);
     }
 }
