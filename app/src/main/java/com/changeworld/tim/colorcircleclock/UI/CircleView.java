@@ -71,6 +71,9 @@ public class CircleView extends View{
                 case Setting.COLOR_PURPLE:
                     color = "#e1bee7";
                     break;
+                case Setting.COLOR_BLUE:
+                    color = "#b3e5fc";
+                    break;
                 default:
                     color = "#ffffff";
             }

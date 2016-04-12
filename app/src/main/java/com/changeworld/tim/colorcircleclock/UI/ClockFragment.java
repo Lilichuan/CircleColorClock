@@ -85,11 +85,16 @@ public class ClockFragment extends Fragment {
         setting = new Setting(getContext());
         DISPLAY_2ND_CIRCLE = setting.getShow2Layer();
         SHOW_CLOCK = setting.isShowClock();
-        format = new SimpleDateFormat(FORMAT , Locale.US);
         textView = (TextView)root.findViewById(R.id.text);
-        Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
-        textView.setTypeface(type);
-        textView.setTextColor(Color.parseColor(setting.getColor()));
+        if(SHOW_CLOCK){
+            format = new SimpleDateFormat(FORMAT , Locale.US);
+            Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
+            textView.setTypeface(type);
+            textView.setTextColor(Color.parseColor(setting.getColor()));
+        }else {
+            textView.setVisibility(View.INVISIBLE);
+        }
+
         initSplitCircle(root);
     }
 
@@ -126,7 +131,10 @@ public class ClockFragment extends Fragment {
     private static Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            textView.setText(createNowTimeText());
+            if(SHOW_CLOCK){
+                textView.setText(createNowTimeText());
+            }
+
             if(DISPLAY_2ND_CIRCLE){
                 splitCircle.invalidate();
             }

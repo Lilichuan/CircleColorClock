@@ -26,6 +26,7 @@ public class Setting {
     public static final String COLOR_ORANGE = "#ff6a13";
     public static final String COLOR_GREEN = "#81c784";
     public static final String COLOR_PURPLE = "#ba68c8";
+    public static final String COLOR_BLUE = "#81d4fa";
 
 
 
