@@ -5,4 +5,6 @@
     <dimen name="clockTextSize">25sp</dimen>
     <integer name="clockTextSizeInt">25</integer>
     <integer name="main_circle_stroke_w">20</integer>
+    <integer name="big_circle_h_int">295</integer>
+    <integer name="split_circle_h_int">230</integer>
 </resources>

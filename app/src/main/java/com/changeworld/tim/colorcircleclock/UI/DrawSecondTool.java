@@ -12,7 +12,7 @@ import com.changeworld.tim.colorcircleclock.Data.Setting;
  */
 public class DrawSecondTool {
     private Paint paint ,selectPaint;
-    private RectF rectF;
+    public RectF rectF;
 
     private int selectUnit = 0;
 
@@ -83,5 +83,9 @@ public class DrawSecondTool {
             }
         }
         canvas.save();
+    }
+
+    public void setRectF(RectF rectF) {
+        this.rectF = rectF;
     }
 }

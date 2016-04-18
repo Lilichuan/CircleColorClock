@@ -2,19 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.changeworld.tim.colorcircleclock">
 
-    <service
-        android:name=".WallPaper$ClockWallpaperService"
-        android:enabled="true"
-        android:label="Division fan made Wallpaper"
-        android:permission="android.permission.BIND_WALLPAPER">
-        <intent-filter>
-            <action android:name="android.service.wallpaper.WallpaperService" />
-        </intent-filter>
 
-        <meta-data
-            android:name="android.service.wallpaper"
-            android:resource="@xml/wallpaper"></meta-data>
-    </service>
 
     <application
         android:allowBackup="true"
@@ -29,7 +17,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WallPaper.SettingActivity"></activity>
+        <activity android:name=".WallPaper.SettingActivity"/>
+
+        <service
+            android:name=".WallPaper.ClockWallpaperService"
+            android:enabled="true"
+            android:label="Division fan made Wallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper"/>
+        </service>
     </application>
 
 </manifest>

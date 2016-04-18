@@ -112,7 +112,7 @@ public class ClockFragment extends Fragment {
 
     private static final String FORMAT = "HH:mm:ss";
 
-    private static String createNowTimeText(){
+    public static String createNowTimeText(){
         Calendar calendar = Calendar.getInstance();
         return format.format(calendar.getTime());
     }
