@@ -18,4 +18,7 @@
         <item>Blue</item>
     </string-array>
 
+    <string name="wallpaper_author">Lilichuan</string>
+    <string name="wallpaper_description">Divition style clock</string>
+
 </resources>
