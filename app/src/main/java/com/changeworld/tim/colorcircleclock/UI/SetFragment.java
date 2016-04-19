@@ -75,8 +75,7 @@ public class SetFragment extends Fragment {
         root.findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.changePage(MainActivity.PAGE_CLOCK);
+                backInterface.onBack();
             }
         });
 
@@ -177,6 +176,18 @@ public class SetFragment extends Fragment {
 
 
         spinner.setSelection(position);
+    }
+
+
+    private BackInterface backInterface;
+
+    public void setBackInterface(BackInterface backInterface) {
+        this.backInterface = backInterface;
+    }
+
+    public interface BackInterface{
+
+        void onBack();
     }
 
 }

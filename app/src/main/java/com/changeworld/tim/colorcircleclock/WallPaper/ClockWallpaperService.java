@@ -1,5 +1,6 @@
 package com.changeworld.tim.colorcircleclock.WallPaper;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -7,11 +8,9 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
-import android.util.TypedValue;
 import android.view.SurfaceHolder;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
-import com.changeworld.tim.colorcircleclock.R;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
 
@@ -20,53 +19,27 @@ import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
  */
 public class ClockWallpaperService extends WallpaperService{
 
-    private String color;
-    private int bigCircleStrokeW;
-    private float bigCircleRadius;
-
-    private int secondSplit;
-
-    private boolean showText, showSecondCircle;
-
-    private Paint textPaint, bigCirclePaint;
-    private int textH, splitCircleH;
-
-
     @Override
     public Engine onCreateEngine() {
-        Setting setting = new Setting(this);
-        color = setting.getColor();
-        bigCircleStrokeW = TypedValue.COMPLEX_UNIT_DIP * getResources().getInteger(R.integer.main_circle_stroke_w);
-        showText = setting.isShowClock();
-        showSecondCircle = setting.getShow2Layer();
-        secondSplit = setting.get2ndLayerSplit();
-
-        textH = TypedValue.COMPLEX_UNIT_SP * getResources().getInteger(R.integer.clockTextSizeInt);
-        textPaint = new Paint();
-        textPaint.setAntiAlias(true);
-        textPaint.setColor(Color.parseColor(color));
-        Typeface type = Typeface.createFromAsset(getAssets(),"square_sans_serif_7.ttf");
-        textPaint.setTypeface(type);
-        textPaint.setTextSize(textH);
-
-        bigCirclePaint = new Paint();
-        bigCirclePaint.setAntiAlias(true);
-        bigCirclePaint.setColor(Color.parseColor(color));
-        bigCirclePaint.setStrokeWidth(bigCircleStrokeW);
-        bigCirclePaint.setStyle(Paint.Style.STROKE);
-
-        int bigCircleW = TypedValue.COMPLEX_UNIT_DIP * getResources().getInteger(R.integer.big_circle_h_int);
-        bigCircleRadius = bigCircleW / 2;
-        splitCircleH = TypedValue.COMPLEX_UNIT_DIP * getResources().getInteger(R.integer.split_circle_h_int);
-        return new ClockWallPaperEngine();
+        return new ClockWallPaperEngine(this);
     }
+
+
+
 
     private class ClockWallPaperEngine extends WallpaperService.Engine{
 
-        private boolean visible;
         private SurfaceHolder surfaceHolder;
 
+        private float textH, splitCircleH;
+
         private DrawSecondTool drawSecondTool;
+
+        private int secondSplit;
+
+        private boolean visible, showText, showSecondCircle;
+
+        private Paint textPaint, bigCirclePaint;
 
         private Handler handler = new Handler();
         private Runnable runnable = new Runnable() {
@@ -76,9 +49,9 @@ public class ClockWallpaperService extends WallpaperService{
             }
         };
 
-        public ClockWallPaperEngine(){
+        public ClockWallPaperEngine(Context context){
+            init(context);
 
-            drawSecondTool = new DrawSecondTool(secondSplit, color);
         }
 
         @Override
@@ -92,17 +65,41 @@ public class ClockWallpaperService extends WallpaperService{
             surfaceHolder = holder;
         }
 
+        private void init(Context context){
+            Setting setting = new Setting(context);
+            String color = setting.getColor();
+            showText = setting.isShowClock();
+            showSecondCircle = setting.getShow2Layer();
+            secondSplit = setting.get2ndLayerSplit();
+
+            textPaint = new Paint();
+            textPaint.setAntiAlias(true);
+            textPaint.setColor(Color.parseColor(color));
+            Typeface type = Typeface.createFromAsset(getAssets(),"square_sans_serif_7.ttf");
+            textPaint.setTypeface(type);
+
+            bigCirclePaint = new Paint();
+            bigCirclePaint.setAntiAlias(true);
+            bigCirclePaint.setColor(Color.parseColor(color));
+            bigCirclePaint.setStyle(Paint.Style.STROKE);
+
+            drawSecondTool = new DrawSecondTool(secondSplit, color);
+        }
+
         private void draw(){
 
-            if(visible){
+            if(visible && surfaceHolder != null){
+
                 Canvas canvas = surfaceHolder.lockCanvas();
                 canvas.drawColor(Color.parseColor("#000000"));
-
+                bigCirclePaint.setStrokeWidth(getCircleStrokeW(canvas));
                 float x = canvas.getWidth()/ 2;
                 float y = canvas.getHeight() / 2;
-                canvas.drawCircle(x, y, bigCircleRadius, bigCirclePaint);
-
+                canvas.drawCircle(x, y, getBigCircleRadius(canvas), bigCirclePaint);
+                splitCircleH = getSecondCircleH(canvas);
                 if(showText){
+                    textH = countTextSize(splitCircleH);
+                    textPaint.setTextSize(textH);
                     String s = ClockFragment.createNowTimeText();
                     float textLen = textPaint.measureText(s);
                     float x2 = (canvas.getWidth() - textLen)/ 2;
@@ -144,6 +141,31 @@ public class ClockWallpaperService extends WallpaperService{
             } else {
                 handler.removeCallbacks(runnable);
             }
+        }
+
+        private float getBigCircleRadius(Canvas canvas){
+            int shortSite = getShortSide(canvas);
+            return (float) (shortSite * 0.4);
+        }
+
+        private float getSecondCircleH(Canvas canvas){
+            int shortSite = getShortSide(canvas);
+            return (float) (shortSite * 0.7);
+        }
+
+        private float getCircleStrokeW(Canvas canvas){
+            int shortSite = getShortSide(canvas);
+            return (float) (shortSite * 0.05);
+        }
+
+        private float countTextSize(float secondCircleH){
+            return (float)(secondCircleH * 0.1);
+        }
+
+        private int getShortSide(Canvas canvas){
+            int h = canvas.getHeight();
+            int w = canvas.getWidth();
+            return (h < w) ? h : w;
         }
     }
 }

@@ -3,3 +3,5 @@
     android:description="@string/wallpaper_description"
     android:thumbnail="@mipmap/ic_launcher"
     android:settingsActivity="com.changeworld.tim.colorcircleclock.WallPaper.SettingActivity"/>
+
+<!--com.changeworld.tim.colorcircleclock.WallPaper.SettingActivity-->

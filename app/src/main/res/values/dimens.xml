@@ -10,7 +10,4 @@
 
     <dimen name="normal_text_size">20sp</dimen>
     <dimen name="bigger_text_size">26sp</dimen>
-    <integer name="clockTextSizeInt">20</integer>
-    <integer name="big_circle_h_int">300</integer>
-    <integer name="split_circle_h_int">250</integer>
 </resources>

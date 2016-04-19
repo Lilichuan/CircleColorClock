@@ -38,7 +38,14 @@ public class MainActivity extends FragmentActivity {
                 f = ClockFragment.newInstance();
                 break;
             case PAGE_SET:
-                f = SetFragment.newInstance();
+                SetFragment setFragment = SetFragment.newInstance();
+                setFragment.setBackInterface(new SetFragment.BackInterface() {
+                    @Override
+                    public void onBack() {
+                        changePage(PAGE_CLOCK);
+                    }
+                });
+                f = setFragment;
                 break;
         }
         mPage = page;

@@ -1,7 +1,6 @@
 package com.changeworld.tim.colorcircleclock.WallPaper;
 
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.changeworld.tim.colorcircleclock.R;
@@ -14,9 +13,17 @@ public class SettingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        SetFragment setFragment = SetFragment.newInstance();
+        setFragment.setBackInterface(new SetFragment.BackInterface() {
+            @Override
+            public void onBack() {
+                finish();
+            }
+        });
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settingFragmentContainer, SetFragment.newInstance())
+                .replace(R.id.settingFragmentContainer, setFragment)
                 .commit();
     }
 }
