@@ -87,7 +87,10 @@ public class ClockWallpaperService extends WallpaperService{
             this.surfaceHolder = surfaceHolder;
         }
 
-
+        @Override
+        public void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            surfaceHolder = holder;
+        }
 
         private void draw(){
 
@@ -104,7 +107,7 @@ public class ClockWallpaperService extends WallpaperService{
                     float textLen = textPaint.measureText(s);
                     float x2 = (canvas.getWidth() - textLen)/ 2;
                     float y2 = (canvas.getHeight() - textH)/ 2;
-                    canvas.drawText(s,x2,y2,textPaint);
+                    canvas.drawText(s,x2,y2 + textH,textPaint);
                 }
 
                 if(showSecondCircle){
@@ -125,18 +128,22 @@ public class ClockWallpaperService extends WallpaperService{
 
         @Override
         public void onVisibilityChanged(boolean visible) {
-            this.visible = visible;
-            if (visible) {
-                handler.post(runnable);
-            } else {
-                handler.removeCallbacks(runnable);
-            }
+            run(visible);
         }
 
         @Override
         public void onDestroy() {
             super.onDestroy();
             handler.removeCallbacks(runnable);
+        }
+
+        private void run(boolean isRun){
+            this.visible = isRun;
+            if (isRun) {
+                handler.post(runnable);
+            } else {
+                handler.removeCallbacks(runnable);
+            }
         }
     }
 }
