@@ -51,18 +51,25 @@ public class ClockWallpaperService extends WallpaperService{
 
         public ClockWallPaperEngine(Context context){
             init(context);
-
         }
 
         @Override
         public void onCreate(SurfaceHolder surfaceHolder) {
             super.onCreate(surfaceHolder);
             this.surfaceHolder = surfaceHolder;
+            init(getApplicationContext());
         }
 
         @Override
         public void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             surfaceHolder = holder;
+            init(getApplicationContext());
+        }
+
+        @Override
+        public void onSurfaceDestroyed(SurfaceHolder holder) {
+            super.onSurfaceDestroyed(holder);
+            run(false);
         }
 
         private void init(Context context){

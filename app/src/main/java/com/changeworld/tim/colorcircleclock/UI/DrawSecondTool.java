@@ -85,6 +85,11 @@ public class DrawSecondTool {
         canvas.save();
     }
 
+    public void resetSplitCount(int count){
+        selectUnit = 0;
+        arcCount = count;
+    }
+
     public void setRectF(RectF rectF) {
         this.rectF = rectF;
     }

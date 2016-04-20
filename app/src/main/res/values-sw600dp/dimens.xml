@@ -3,4 +3,6 @@
     <dimen name="circle_h">550dp</dimen>
     <dimen name="split_circle_h">450dp</dimen>
     <dimen name="clockTextSize">45sp</dimen>
+    <integer name="clockTextSizeInt">45</integer>
+    <integer name="main_circle_stroke_w">40</integer>
 </resources>
