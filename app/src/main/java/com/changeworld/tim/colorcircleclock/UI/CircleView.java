@@ -2,17 +2,12 @@ package com.changeworld.tim.colorcircleclock.UI;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 
-/**
- * Created by tim on 2016/4/10.
- */
+
 public class CircleView extends View{
 
     private DrawSecondTool drawCircleTool;

@@ -26,10 +26,8 @@ import java.util.TimerTask;
 
 public class ClockFragment extends Fragment {
 
-    private static SimpleDateFormat format;
     private Timer timer;
     private static TextView textView;
-    private Setting setting;
     private static boolean DISPLAY_2ND_CIRCLE, SHOW_CLOCK ;
 
     private static CircleView splitCircle;
@@ -82,12 +80,12 @@ public class ClockFragment extends Fragment {
     }
 
     private void init(View root){
-        setting = new Setting(getContext());
+        Setting setting = new Setting(getContext());
         DISPLAY_2ND_CIRCLE = setting.getShow2Layer();
         SHOW_CLOCK = setting.isShowClock();
         textView = (TextView)root.findViewById(R.id.text);
+
         if(SHOW_CLOCK){
-            format = new SimpleDateFormat(FORMAT , Locale.US);
             Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
             textView.setTypeface(type);
             textView.setTextColor(Color.parseColor(setting.getColor()));
@@ -113,6 +111,7 @@ public class ClockFragment extends Fragment {
     private static final String FORMAT = "HH:mm:ss";
 
     public static String createNowTimeText(){
+        SimpleDateFormat format = new SimpleDateFormat(FORMAT , Locale.US);
         Calendar calendar = Calendar.getInstance();
         return format.format(calendar.getTime());
     }

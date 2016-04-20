@@ -14,9 +14,7 @@ import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
 
-/**
- * Created by tim on 2016/4/18.
- */
+
 public class ClockWallpaperService extends WallpaperService{
 
     @Override

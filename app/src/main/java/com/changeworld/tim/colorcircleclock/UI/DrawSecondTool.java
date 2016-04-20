@@ -7,9 +7,7 @@ import android.graphics.RectF;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 
-/**
- * Created by tim on 2016/4/18.
- */
+
 public class DrawSecondTool {
     private Paint paint ,selectPaint;
     public RectF rectF;
@@ -17,8 +15,8 @@ public class DrawSecondTool {
     private int selectUnit = 0;
 
     private int arcCount;
-    private float totalUnitDegree, unitDegree, SEPARATE_DEGREE = 3;
-    private int PAINT_STROKE_W = 20 ;
+    private float totalUnitDegree, unitDegree;
+
 
     public DrawSecondTool(int count, String selectColor){
 
@@ -54,6 +52,7 @@ public class DrawSecondTool {
         selectPaint.setStyle(Paint.Style.STROKE);
 
         arcCount = count;
+        float SEPARATE_DEGREE = 3;
         totalUnitDegree = ((float) (360)) / count;
         if(totalUnitDegree <= SEPARATE_DEGREE){
             SEPARATE_DEGREE = totalUnitDegree / 2;
@@ -64,7 +63,7 @@ public class DrawSecondTool {
     }
 
     public void drawCanvas(Canvas canvas){
-
+        int PAINT_STROKE_W = 20 ;
         if(rectF == null){
             rectF = new RectF(PAINT_STROKE_W, PAINT_STROKE_W, canvas.getWidth() - PAINT_STROKE_W, canvas.getHeight() - PAINT_STROKE_W);
         }
@@ -85,10 +84,10 @@ public class DrawSecondTool {
         canvas.save();
     }
 
-    public void resetSplitCount(int count){
-        selectUnit = 0;
-        arcCount = count;
-    }
+//    public void resetSplitCount(int count){
+//        selectUnit = 0;
+//        arcCount = count;
+//    }
 
     public void setRectF(RectF rectF) {
         this.rectF = rectF;

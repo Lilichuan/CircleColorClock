@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
-import com.changeworld.tim.colorcircleclock.MainActivity;
 import com.changeworld.tim.colorcircleclock.R;
 
 
@@ -23,7 +22,6 @@ public class SetFragment extends Fragment {
 
     private Setting setting;
     private View secondLayerArea;
-    private SeekBar circleSplitSeekBar;
     private TextView splitCountText;
 
     public SetFragment() {
@@ -41,9 +39,9 @@ public class SetFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+//        if (getArguments() != null) {
+//
+//        }
     }
 
     @Override
@@ -89,7 +87,7 @@ public class SetFragment extends Fragment {
         secondLayerArea = root.findViewById(R.id.secondLayerArea);
         secondLayerArea.setVisibility(setting.getShow2Layer() ? View.VISIBLE : View.GONE);
         splitCountText = (TextView)root.findViewById(R.id.splitCountText);
-        circleSplitSeekBar = (SeekBar)root.findViewById(R.id.splitCountSeekBar);
+        SeekBar circleSplitSeekBar = (SeekBar)root.findViewById(R.id.splitCountSeekBar);
         circleSplitSeekBar.setMax(Setting.CIRCLE_SPLIT_MAX);
         circleSplitSeekBar.setProgress(setting.get2ndLayerSplit());
         circleSplitSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

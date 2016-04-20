@@ -11,13 +11,11 @@ import android.view.View;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
 
-/**
- * Created by tim on 2016/4/11.
- */
+
 public class BigCircleView extends View{
 
-    private String color;
     private int strokeW;
+    private Paint paint;
 
     public BigCircleView(Context context) {
         super(context);
@@ -36,20 +34,18 @@ public class BigCircleView extends View{
 
     private void init(Context context){
         Setting setting = new Setting(context);
-        color = setting.getColor();
         strokeW = TypedValue.COMPLEX_UNIT_DIP * context.getResources().getInteger(R.integer.main_circle_stroke_w);
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor(setting.getColor()));
+        paint.setStrokeWidth(strokeW);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.parseColor("#00000000"));
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(color));
-        paint.setStrokeWidth(strokeW);
-        paint.setStyle(Paint.Style.STROKE);
-
         int radius = canvas.getWidth() / 2;
 
         canvas.drawCircle(radius ,radius , radius - strokeW , paint);
