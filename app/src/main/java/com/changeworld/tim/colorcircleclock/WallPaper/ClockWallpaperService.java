@@ -23,8 +23,6 @@ public class ClockWallpaperService extends WallpaperService{
     }
 
 
-
-
     private class ClockWallPaperEngine extends WallpaperService.Engine{
 
         private SurfaceHolder surfaceHolder;
@@ -108,8 +106,8 @@ public class ClockWallpaperService extends WallpaperService{
                     String s = ClockFragment.createNowTimeText();
                     float textLen = textPaint.measureText(s);
                     float x2 = (canvas.getWidth() - textLen)/ 2;
-                    float y2 = (canvas.getHeight() - textH)/ 2;
-                    canvas.drawText(s,x2,y2 + textH,textPaint);
+                    float y2 = (canvas.getHeight())/ 2 + (textH / 4);
+                    canvas.drawText(s,x2,y2,textPaint);
                 }
 
                 if(showSecondCircle){
@@ -139,6 +137,14 @@ public class ClockWallpaperService extends WallpaperService{
             handler.removeCallbacks(runnable);
         }
 
+        @Override
+        public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
+            super.onSurfaceRedrawNeeded(holder);
+            init(getApplicationContext());
+        }
+
+
+
         private void run(boolean isRun){
             this.visible = isRun;
             if (isRun) {
@@ -164,7 +170,7 @@ public class ClockWallpaperService extends WallpaperService{
         }
 
         private float countTextSize(float secondCircleH){
-            return (float)(secondCircleH * 0.1);
+            return (float)(secondCircleH * 0.15);
         }
 
         private int getShortSide(Canvas canvas){
