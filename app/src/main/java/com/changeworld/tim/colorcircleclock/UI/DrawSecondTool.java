@@ -27,7 +27,7 @@ public class DrawSecondTool {
                 color = "#c8e6c9";
                 break;
             case Setting.COLOR_ORANGE:
-                color = "#b24a0d";
+                color = "#6b2c07";
                 break;
             case Setting.COLOR_PURPLE:
                 color = "#e1bee7";
