@@ -35,6 +35,12 @@ public class DrawSecondTool {
             case Setting.COLOR_BLUE:
                 color = "#b3e5fc";
                 break;
+            case Setting.COLOR_RAD :
+                color = "#590000";
+                break;
+            case Setting.COLOR_BARNEY:
+                color = "#690026";
+                break;
             default:
                 color = "#ffffff";
         }

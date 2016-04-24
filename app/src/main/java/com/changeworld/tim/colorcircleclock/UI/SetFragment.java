@@ -140,6 +140,12 @@ public class SetFragment extends Fragment {
                     case 3:
                         s = Setting.COLOR_BLUE;
                         break;
+                    case 4:
+                        s = Setting.COLOR_RAD;
+                        break;
+                    case 5:
+                        s = Setting.COLOR_BARNEY;
+                        break;
                     default:
                         s = Setting.COLOR_ORANGE;
                 }
@@ -167,6 +173,12 @@ public class SetFragment extends Fragment {
                 break;
             case Setting.COLOR_BLUE:
                 position = 3;
+                break;
+            case Setting.COLOR_RAD:
+                position = 4;
+                break;
+            case Setting.COLOR_BARNEY:
+                position = 5;
                 break;
             default:
                 position = 2;
