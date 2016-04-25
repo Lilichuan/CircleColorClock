@@ -77,6 +77,15 @@ public class SetFragment extends Fragment {
             }
         });
 
+        CheckBox displayError = (CheckBox)root.findViewById(R.id.showErrorMsg);
+        displayError.setChecked(setting.getShowError());
+        displayError.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                setting.setShowError(b);
+            }
+        });
+
         initSecondCircleSettingView(root);
         initColorSelect(root);
 

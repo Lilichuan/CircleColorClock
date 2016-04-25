@@ -28,9 +28,12 @@ public class ClockFragment extends Fragment {
 
     private Timer timer;
     private static TextView textView;
-    private static boolean DISPLAY_2ND_CIRCLE, SHOW_CLOCK ;
+    private static boolean DISPLAY_2ND_CIRCLE, SHOW_CLOCK ,SHOW_FAKE_ERR;
 
     private static CircleView splitCircle;
+    private static BigCircleView bigCircleView;
+    private static ErrorCodeDisplayer errorCodeDisplayer;
+    private static String TEXT_COLOR;
 
 
     public ClockFragment() {
@@ -83,17 +86,34 @@ public class ClockFragment extends Fragment {
         Setting setting = new Setting(getContext());
         DISPLAY_2ND_CIRCLE = setting.getShow2Layer();
         SHOW_CLOCK = setting.isShowClock();
+        SHOW_FAKE_ERR = setting.getShowError();
         textView = (TextView)root.findViewById(R.id.text);
+        bigCircleView = (BigCircleView)root.findViewById(R.id.mainCircle);
 
         if(SHOW_CLOCK){
             Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"square_sans_serif_7.ttf");
             textView.setTypeface(type);
-            textView.setTextColor(Color.parseColor(setting.getColor()));
+            TEXT_COLOR = setting.getColor();
+
         }else {
             textView.setVisibility(View.INVISIBLE);
         }
 
+        errorCodeDisplayer = new ErrorCodeDisplayer(getContext());
+        if(TEXT_COLOR.contentEquals(Setting.COLOR_RAD)){
+            errorCodeDisplayer.setRad(true);
+        }
+
         initSplitCircle(root);
+        if(SHOW_FAKE_ERR){
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    errorCodeDisplayer.setShow(true);
+                }
+            });
+        }
+
     }
 
     private void initSplitCircle(View root){
@@ -130,13 +150,29 @@ public class ClockFragment extends Fragment {
     private static Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if(SHOW_CLOCK){
-                textView.setText(createNowTimeText());
+
+            if(errorCodeDisplayer.isShow()){
+                splitCircle.setPause(true);
+                bigCircleView.setPause(true);
+                splitCircle.invalidate();
+                bigCircleView.invalidate();
+                errorCodeDisplayer.display(textView, Calendar.getInstance().get(Calendar.SECOND));
+            }else {
+                bigCircleView.setPause(false);
+                bigCircleView.invalidate();
+
+                if(SHOW_CLOCK){
+                    textView.setBackgroundColor(Color.parseColor("#000000"));
+                    textView.setTextColor(Color.parseColor(TEXT_COLOR));
+                    textView.setText(createNowTimeText());
+                }
+
+                if(DISPLAY_2ND_CIRCLE){
+                    splitCircle.setPause(false);
+                    splitCircle.invalidate();
+                }
             }
 
-            if(DISPLAY_2ND_CIRCLE){
-                splitCircle.invalidate();
-            }
 
             super.handleMessage(msg);
         }

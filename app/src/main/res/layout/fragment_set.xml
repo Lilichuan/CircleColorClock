@@ -28,6 +28,11 @@
             style="@style/set_title_text"
             android:text="@string/display_2nd_layer"/>
 
+        <CheckBox
+            android:id="@+id/showErrorMsg"
+            style="@style/set_title_text"
+            android:text="@string/display_error"/>
+
         <LinearLayout
             android:id="@+id/secondLayerArea"
             android:layout_width="match_parent"

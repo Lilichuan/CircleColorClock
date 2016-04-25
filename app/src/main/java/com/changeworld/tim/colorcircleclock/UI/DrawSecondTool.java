@@ -90,6 +90,11 @@ public class DrawSecondTool {
         canvas.save();
     }
 
+    public void pause(Canvas canvas){
+        canvas.drawColor(Color.parseColor("#000000"));
+        canvas.save();
+    }
+
 //    public void resetSplitCount(int count){
 //        selectUnit = 0;
 //        arcCount = count;

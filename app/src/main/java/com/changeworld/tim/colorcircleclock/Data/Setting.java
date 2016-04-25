@@ -19,6 +19,7 @@ public class Setting {
     private static final String KEY_DISPLAY_2_LAYER = "secondLayer";
     private static final String KEY_2_LAYER_COUNT = "secondLayerCount";
     private static final String KEY_COLOR = "color";
+    private static final String KEY_ERROR = "error";
 
     public static final int CIRCLE_SPLIT_MAX = 180;
     public static final int CIRCLE_SPLIT_MINI = 3;
@@ -89,5 +90,18 @@ public class Setting {
 
     public String getColor(){
         return sharedPreferences.getString(KEY_COLOR, COLOR_ORANGE);
+    }
+
+
+    /*
+    *
+    * Error
+    * */
+    public void setShowError(boolean showError){
+        sharedPreferences.edit().putBoolean(KEY_ERROR, showError).apply();
+    }
+
+    public boolean getShowError(){
+        return sharedPreferences.getBoolean(KEY_ERROR, false);
     }
 }

@@ -6,6 +6,7 @@
     <string name="back">Back</string>
     <string name="showClock">Show clock number</string>
     <string name="display_2nd_layer">Display 2 circles</string>
+    <string name="display_error">Display fake error message if touch screen</string>
     <string name="secondLayerSplitCount">Second circle display count:%d</string>
     <string name="setting">Setting</string>
 
@@ -22,5 +23,13 @@
 
     <string name="wallpaper_author">Lilichuan</string>
     <string name="wallpaper_description">Divition style clock</string>
+
+    <string-array name="error_code">
+        <item>Error:Romeo</item>
+        <item>Error:Delta</item>
+        <item>Error:MIKE</item>
+        <item>Error:Aiden Pearce hacked</item>
+        <item>Error:Bishop hacked</item>
+    </string-array>
 
 </resources>

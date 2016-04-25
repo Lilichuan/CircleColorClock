@@ -16,6 +16,7 @@ public class BigCircleView extends View{
 
     private int strokeW;
     private Paint paint;
+    private boolean pause = false;
 
     public BigCircleView(Context context) {
         super(context);
@@ -46,9 +47,20 @@ public class BigCircleView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.parseColor("#00000000"));
-        int radius = canvas.getWidth() / 2;
+        if(!pause){
+            int radius = canvas.getWidth() / 2;
 
-        canvas.drawCircle(radius ,radius , radius - strokeW , paint);
+            canvas.drawCircle(radius ,radius , radius - strokeW , paint);
+        }
+
         canvas.save();
+    }
+
+    public boolean isPause(){
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
     }
 }

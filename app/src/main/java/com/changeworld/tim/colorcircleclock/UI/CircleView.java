@@ -11,6 +11,7 @@ import com.changeworld.tim.colorcircleclock.Data.Setting;
 public class CircleView extends View{
 
     private DrawSecondTool drawCircleTool;
+    private boolean pause = false;
 
     public CircleView(Context context) {
         super(context);
@@ -36,8 +37,16 @@ public class CircleView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(drawCircleTool != null){
-            drawCircleTool.drawCanvas(canvas);
+            if(pause){
+                drawCircleTool.pause(canvas);
+            }else {
+                drawCircleTool.drawCanvas(canvas);
+            }
+
         }
     }
 
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
 }
