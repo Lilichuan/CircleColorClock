@@ -19,7 +19,7 @@ public class ErrorCodeDisplayer {
     private String[] errorText;
     private int ERROR_COUNT;
     private int countDown ;
-    private static final int COUNT_MAX = 2;
+    private static final int COUNT_MAX = 1;
     private String displayCode;
     private boolean show = false;
     private boolean isRad = false;
@@ -67,16 +67,23 @@ public class ErrorCodeDisplayer {
 
     }
 
-    public void display(Canvas canvas, int textH, int sec){
+    public void display(Canvas canvas, float textH, int sec){
         if(COUNT_MAX == countDown){
             displayCode = getText(sec);
         }
         paint.setTextSize(textH);
         float textW = paint.measureText(displayCode);
         float x, y;
+        canvas.drawColor(Color.parseColor("#000000"));
         x = (canvas.getWidth() - textW) / 2;
         y = (canvas.getHeight())/ 2 + (textH / 4);
         canvas.drawText(displayCode, x, y, paint);
+
+        countDown--;
+        if(countDown < 0){
+            setShow(false);
+            reset();
+        }
     }
 
     public void setShow(boolean show) {

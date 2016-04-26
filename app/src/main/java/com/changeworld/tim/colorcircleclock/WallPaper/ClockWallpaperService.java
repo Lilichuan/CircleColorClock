@@ -16,6 +16,8 @@ import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
 import com.changeworld.tim.colorcircleclock.UI.ErrorCodeDisplayer;
 
+import java.util.Calendar;
+
 
 public class ClockWallpaperService extends WallpaperService{
 
@@ -80,6 +82,7 @@ public class ClockWallpaperService extends WallpaperService{
             secondSplit = setting.get2ndLayerSplit();
 
             errorCodeDisplayer = new ErrorCodeDisplayer(context);
+            errorCodeDisplayer.setRad(color.contains(Setting.COLOR_RAD));
 
             textPaint = new Paint();
             textPaint.setAntiAlias(true);
@@ -106,23 +109,29 @@ public class ClockWallpaperService extends WallpaperService{
                 float y = canvas.getHeight() / 2;
                 canvas.drawCircle(x, y, getBigCircleRadius(canvas), bigCirclePaint);
                 splitCircleH = getSecondCircleH(canvas);
-                if(showText){
-                    textH = countTextSize(splitCircleH);
-                    textPaint.setTextSize(textH);
-                    String s = ClockFragment.createNowTimeText();
-                    float textLen = textPaint.measureText(s);
-                    float x2 = (canvas.getWidth() - textLen)/ 2;
-                    float y2 = (canvas.getHeight())/ 2 + (textH / 4);
-                    canvas.drawText(s,x2,y2,textPaint);
+
+                if(errorCodeDisplayer.isShow()){
+                    errorCodeDisplayer.display(canvas, countTextSize(splitCircleH), Calendar.getInstance().get(Calendar.SECOND));
+                }else {
+                    if(showText){
+                        textH = countTextSize(splitCircleH);
+                        textPaint.setTextSize(textH);
+                        String s = ClockFragment.createNowTimeText();
+                        float textLen = textPaint.measureText(s);
+                        float x2 = (canvas.getWidth() - textLen)/ 2;
+                        float y2 = (canvas.getHeight())/ 2 + (textH / 4);
+                        canvas.drawText(s,x2,y2,textPaint);
+                    }
+
+                    if(showSecondCircle){
+                        float leftMargin = (canvas.getWidth() - splitCircleH)/2;
+                        float topMargin = (canvas.getHeight() - splitCircleH)/2;
+                        RectF rectF = new RectF(leftMargin, topMargin, leftMargin + splitCircleH , topMargin + splitCircleH);
+                        drawSecondTool.setRectF(rectF);
+                        drawSecondTool.drawCanvas(canvas);
+                    }
                 }
 
-                if(showSecondCircle){
-                    float leftMargin = (canvas.getWidth() - splitCircleH)/2;
-                    float topMargin = (canvas.getHeight() - splitCircleH)/2;
-                    RectF rectF = new RectF(leftMargin, topMargin, leftMargin + splitCircleH , topMargin + splitCircleH);
-                    drawSecondTool.setRectF(rectF);
-                    drawSecondTool.drawCanvas(canvas);
-                }
 
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
@@ -153,9 +162,14 @@ public class ClockWallpaperService extends WallpaperService{
         public void onTouchEvent(MotionEvent event) {
             super.onTouchEvent(event);
             if(event.getActionMasked() == MotionEvent.ACTION_DOWN){
+                if(errorCodeDisplayer != null){
+                    errorCodeDisplayer.setShow(true);
+                }
 
             }else if(event.getActionMasked() == MotionEvent.ACTION_UP){
-
+                if(errorCodeDisplayer != null){
+                    //errorCodeDisplayer.setShow(false);
+                }
             }
         }
 
