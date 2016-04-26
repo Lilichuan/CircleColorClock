@@ -33,6 +33,11 @@
             style="@style/set_title_text"
             android:text="@string/display_error"/>
 
+        <!--<CheckBox-->
+            <!--android:id="@+id/showShadow"-->
+            <!--style="@style/set_title_text"-->
+            <!--android:text="@string/displayMainShadow"/>-->
+
         <LinearLayout
             android:id="@+id/secondLayerArea"
             android:layout_width="match_parent"

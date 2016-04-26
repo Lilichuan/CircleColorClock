@@ -7,6 +7,7 @@
     <string name="showClock">Show clock number</string>
     <string name="display_2nd_layer">Display 2 circles</string>
     <string name="display_error">Display fake error message if touch screen</string>
+    <string name="displayMainShadow">Display main circle shadow</string>
     <string name="secondLayerSplitCount">Second circle display count:%d</string>
     <string name="setting">Setting</string>
 

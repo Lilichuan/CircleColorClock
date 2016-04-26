@@ -86,6 +86,15 @@ public class SetFragment extends Fragment {
             }
         });
 
+//        CheckBox displayShadow = (CheckBox)root.findViewById(R.id.showShadow);
+//        displayShadow.setChecked(setting.isShowMainCircleShadow());
+//        displayShadow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                setting.setShowMainCircleShadow(b);
+//            }
+//        });
+
         initSecondCircleSettingView(root);
         initColorSelect(root);
 

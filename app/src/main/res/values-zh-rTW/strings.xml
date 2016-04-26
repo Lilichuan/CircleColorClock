@@ -30,5 +30,6 @@
         <item>Error:Aiden Pearce hacked</item>
         <item>Error:Bishop hacked</item>
     </string-array>
+    <string name="displayMainShadow">顯示主圈陰影</string>
 
 </resources>

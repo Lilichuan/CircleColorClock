@@ -18,36 +18,11 @@ public class DrawSecondTool {
     private float totalUnitDegree, unitDegree;
 
 
-    public DrawSecondTool(int count, String selectColor){
-
-        String color;
-
-        switch (selectColor){
-            case Setting.COLOR_GREEN:
-                color = "#c8e6c9";
-                break;
-            case Setting.COLOR_ORANGE:
-                color = "#6b2c07";
-                break;
-            case Setting.COLOR_PURPLE:
-                color = "#e1bee7";
-                break;
-            case Setting.COLOR_BLUE:
-                color = "#b3e5fc";
-                break;
-            case Setting.COLOR_RAD :
-                color = "#590000";
-                break;
-            case Setting.COLOR_BARNEY:
-                color = "#690026";
-                break;
-            default:
-                color = "#ffffff";
-        }
+    public DrawSecondTool(int count, String selectColor, String fadeColor){
 
         paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor(color));
+        paint.setColor(Color.parseColor(fadeColor));
         paint.setStrokeWidth((float) 20.0);
         paint.setStyle(Paint.Style.STROKE);
 

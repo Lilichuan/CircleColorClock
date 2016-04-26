@@ -28,7 +28,7 @@ public class CircleView extends View{
     public void init(){
         Setting setting = new Setting(getContext());
         if(setting.getShow2Layer()){
-            drawCircleTool = new DrawSecondTool(setting.get2ndLayerSplit(), setting.getColor());
+            drawCircleTool = new DrawSecondTool(setting.get2ndLayerSplit(), setting.getColor(), setting.getFadeColor());
         }
 
     }

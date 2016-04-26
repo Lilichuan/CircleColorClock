@@ -20,6 +20,7 @@ public class Setting {
     private static final String KEY_2_LAYER_COUNT = "secondLayerCount";
     private static final String KEY_COLOR = "color";
     private static final String KEY_ERROR = "error";
+    private static final String KEY_MAIN_SHADOW = "mainShadow";
 
     public static final int CIRCLE_SPLIT_MAX = 180;
     public static final int CIRCLE_SPLIT_MINI = 3;
@@ -92,6 +93,36 @@ public class Setting {
         return sharedPreferences.getString(KEY_COLOR, COLOR_ORANGE);
     }
 
+    public String getFadeColor(){
+        String selectColor = getColor();
+        String color;
+
+        switch (selectColor){
+            case Setting.COLOR_GREEN:
+                color = "#c8e6c9";
+                break;
+            case Setting.COLOR_ORANGE:
+                color = "#6b2c07";
+                break;
+            case Setting.COLOR_PURPLE:
+                color = "#e1bee7";
+                break;
+            case Setting.COLOR_BLUE:
+                color = "#b3e5fc";
+                break;
+            case Setting.COLOR_RAD :
+                color = "#590000";
+                break;
+            case Setting.COLOR_BARNEY:
+                color = "#690026";
+                break;
+            default:
+                color = "#ffffff";
+        }
+
+        return color;
+    }
+
 
     /*
     *
@@ -103,5 +134,18 @@ public class Setting {
 
     public boolean getShowError(){
         return sharedPreferences.getBoolean(KEY_ERROR, false);
+    }
+
+
+    /*
+    *
+    * Main circle shadow setting
+    * */
+    public void setShowMainCircleShadow(boolean show){
+        sharedPreferences.edit().putBoolean(KEY_MAIN_SHADOW, show).apply();
+    }
+
+    public boolean isShowMainCircleShadow(){
+        return sharedPreferences.getBoolean(KEY_MAIN_SHADOW, false);
     }
 }

@@ -37,7 +37,7 @@ public class ClockWallpaperService extends WallpaperService{
 
         private int secondSplit;
 
-        private boolean visible, showText, showSecondCircle;
+        private boolean visible, showText, showSecondCircle, enableClick;
 
         private Paint textPaint, bigCirclePaint;
 
@@ -80,6 +80,7 @@ public class ClockWallpaperService extends WallpaperService{
             showText = setting.isShowClock();
             showSecondCircle = setting.getShow2Layer();
             secondSplit = setting.get2ndLayerSplit();
+            enableClick = setting.getShowError();
 
             errorCodeDisplayer = new ErrorCodeDisplayer(context);
             errorCodeDisplayer.setRad(color.contains(Setting.COLOR_RAD));
@@ -95,7 +96,7 @@ public class ClockWallpaperService extends WallpaperService{
             bigCirclePaint.setColor(Color.parseColor(color));
             bigCirclePaint.setStyle(Paint.Style.STROKE);
 
-            drawSecondTool = new DrawSecondTool(secondSplit, color);
+            drawSecondTool = new DrawSecondTool(secondSplit, color, setting.getFadeColor());
         }
 
         private void draw(){
@@ -161,14 +162,9 @@ public class ClockWallpaperService extends WallpaperService{
         @Override
         public void onTouchEvent(MotionEvent event) {
             super.onTouchEvent(event);
-            if(event.getActionMasked() == MotionEvent.ACTION_DOWN){
+            if(event.getActionMasked() == MotionEvent.ACTION_DOWN && enableClick){
                 if(errorCodeDisplayer != null){
                     errorCodeDisplayer.setShow(true);
-                }
-
-            }else if(event.getActionMasked() == MotionEvent.ACTION_UP){
-                if(errorCodeDisplayer != null){
-                    //errorCodeDisplayer.setShow(false);
                 }
             }
         }

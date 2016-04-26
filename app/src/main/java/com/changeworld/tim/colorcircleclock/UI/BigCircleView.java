@@ -15,7 +15,7 @@ import com.changeworld.tim.colorcircleclock.R;
 public class BigCircleView extends View{
 
     private int strokeW;
-    private Paint paint;
+    private Paint paint, shadowPaint;
     private boolean pause = false;
 
     public BigCircleView(Context context) {
@@ -41,6 +41,13 @@ public class BigCircleView extends View{
         paint.setColor(Color.parseColor(setting.getColor()));
         paint.setStrokeWidth(strokeW);
         paint.setStyle(Paint.Style.STROKE);
+//        if(setting.isShowMainCircleShadow()){
+//            shadowPaint = new Paint();
+//            shadowPaint.setAntiAlias(true);
+//            shadowPaint.setColor(Color.parseColor(setting.getFadeColor()));
+//            shadowPaint.setStrokeWidth(strokeW);
+//            shadowPaint.setStyle(Paint.Style.STROKE);
+//        }
     }
 
     @Override
@@ -49,6 +56,10 @@ public class BigCircleView extends View{
         canvas.drawColor(Color.parseColor("#00000000"));
         if(!pause){
             int radius = canvas.getWidth() / 2;
+
+//            if(shadowPaint != null){
+//                canvas.drawCircle(radius ,radius , radius - (strokeW / 2), shadowPaint);
+//            }
 
             canvas.drawCircle(radius ,radius , radius - strokeW , paint);
         }
