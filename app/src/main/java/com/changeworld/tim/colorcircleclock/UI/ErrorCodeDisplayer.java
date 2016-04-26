@@ -1,7 +1,9 @@
 package com.changeworld.tim.colorcircleclock.UI;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.R;
@@ -22,9 +24,15 @@ public class ErrorCodeDisplayer {
     private boolean show = false;
     private boolean isRad = false;
 
+    private Paint paint;
+
     public ErrorCodeDisplayer(Context context){
         errorText = context.getResources().getStringArray(R.array.error_code);
         ERROR_COUNT = errorText.length;
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor(TEXT_COLOR));
+
         reset();
     }
 
@@ -57,6 +65,18 @@ public class ErrorCodeDisplayer {
             reset();
         }
 
+    }
+
+    public void display(Canvas canvas, int textH, int sec){
+        if(COUNT_MAX == countDown){
+            displayCode = getText(sec);
+        }
+        paint.setTextSize(textH);
+        float textW = paint.measureText(displayCode);
+        float x, y;
+        x = (canvas.getWidth() - textW) / 2;
+        y = (canvas.getHeight())/ 2 + (textH / 4);
+        canvas.drawText(displayCode, x, y, paint);
     }
 
     public void setShow(boolean show) {

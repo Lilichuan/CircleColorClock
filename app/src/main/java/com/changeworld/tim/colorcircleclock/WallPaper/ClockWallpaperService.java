@@ -8,11 +8,13 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
+import com.changeworld.tim.colorcircleclock.UI.ErrorCodeDisplayer;
 
 
 public class ClockWallpaperService extends WallpaperService{
@@ -36,6 +38,8 @@ public class ClockWallpaperService extends WallpaperService{
         private boolean visible, showText, showSecondCircle;
 
         private Paint textPaint, bigCirclePaint;
+
+        private ErrorCodeDisplayer errorCodeDisplayer;
 
         private Handler handler = new Handler();
         private Runnable runnable = new Runnable() {
@@ -74,6 +78,8 @@ public class ClockWallpaperService extends WallpaperService{
             showText = setting.isShowClock();
             showSecondCircle = setting.getShow2Layer();
             secondSplit = setting.get2ndLayerSplit();
+
+            errorCodeDisplayer = new ErrorCodeDisplayer(context);
 
             textPaint = new Paint();
             textPaint.setAntiAlias(true);
@@ -143,7 +149,15 @@ public class ClockWallpaperService extends WallpaperService{
             init(getApplicationContext());
         }
 
+        @Override
+        public void onTouchEvent(MotionEvent event) {
+            super.onTouchEvent(event);
+            if(event.getActionMasked() == MotionEvent.ACTION_DOWN){
 
+            }else if(event.getActionMasked() == MotionEvent.ACTION_UP){
+
+            }
+        }
 
         private void run(boolean isRun){
             this.visible = isRun;
