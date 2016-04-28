@@ -23,16 +23,18 @@
             style="@style/set_title_text"
             android:text="@string/showClock"/>
 
-        <CheckBox
-            android:id="@+id/show2ndLayer"
-            style="@style/set_title_text"
-            android:text="@string/display_2nd_layer"/>
+
 
         <CheckBox
             android:id="@+id/showErrorMsg"
             style="@style/set_title_text"
             android:text="@string/display_error"/>
 
+
+        <CheckBox
+            android:id="@+id/show2ndLayer"
+            style="@style/set_title_text"
+            android:text="@string/display_2nd_layer"/>
         <!--<CheckBox-->
             <!--android:id="@+id/showShadow"-->
             <!--style="@style/set_title_text"-->
