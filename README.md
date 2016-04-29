@@ -1,6 +1,8 @@
 # CircleColorClock
+
+![alt tag](https://raw.githubusercontent.com/Lilichuan/CircleColorClock/master/demo_pic.png)  
 A simple Android clock app
-Style like [Tom Clancy : Division]
+Style like [Tom Clancy 's The Division]
 
 Usage:
 --Download file "app.apk" and install to android device.
