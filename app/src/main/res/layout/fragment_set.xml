@@ -19,17 +19,14 @@
             android:layout_margin="13dp"/>
 
         <CheckBox
+            android:id="@+id/showBattery"
+            style="@style/set_title_text"
+            android:text="@string/showBattery"/>
+
+        <CheckBox
             android:id="@+id/showClock"
             style="@style/set_title_text"
             android:text="@string/showClock"/>
-
-
-
-        <CheckBox
-            android:id="@+id/showErrorMsg"
-            style="@style/set_title_text"
-            android:text="@string/display_error"/>
-
 
         <CheckBox
             android:id="@+id/show2ndLayer"

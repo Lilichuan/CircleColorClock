@@ -1,5 +1,15 @@
 # CircleColorClock
 A simple Android clock app
+Style like [Tom Clancy : Division]
+
+Usage:
+--Download file "app.apk" and install to android device.
+--Long click clock screen and get into app setting.
+--Have wallpaper mode in same app.
+--This is open source project.
+--I don't (and will not) upload this app to Google play store.
+--Don't need system permission.
+
 造型簡單的Android app時鐘。
 
 --App的本體是時鐘而已。  
@@ -21,6 +31,10 @@ App不要求任何權限。
 
 
 ~~~~~~~~~以下為更新履歷~~~~~~~~~~~~
+
+2016/04/29
+校正所有顏色
+利用主圈顯示裝置電量，可從設定開關此功能。
 
 2016/04/22
 新增動態桌布。

@@ -21,7 +21,7 @@
     <string name="wallpaper_author">Lilichuan</string>
     <string name="wallpaper_description">全境封鎖風格時鐘</string>
     <string name="app_name">圓圈時鐘</string>
-    <string name="display_error">點擊螢幕會顯示假錯誤訊息</string>
+    <string name="display_error">彩蛋</string>
 
     <string-array name="error_code">
         <item>Error:Romeo</item>
@@ -31,5 +31,6 @@
         <item>Error:Bishop hacked</item>
     </string-array>
     <string name="displayMainShadow">顯示主圈陰影</string>
+    <string name="showBattery">在主環上呈現裝置剩餘電力</string>
 
 </resources>

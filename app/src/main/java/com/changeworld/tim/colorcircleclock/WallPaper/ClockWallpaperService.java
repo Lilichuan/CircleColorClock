@@ -11,10 +11,10 @@ import android.service.wallpaper.WallpaperService;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
+import com.changeworld.tim.colorcircleclock.Data.BatteryTool;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
-import com.changeworld.tim.colorcircleclock.UI.ErrorCodeDisplayer;
 
 import java.util.Calendar;
 
@@ -37,11 +37,11 @@ public class ClockWallpaperService extends WallpaperService{
 
         private int secondSplit;
 
-        private boolean visible, showText, showSecondCircle, enableClick;
+        private boolean visible, showText, showSecondCircle, showBattery;
 
-        private Paint textPaint, bigCirclePaint;
+        private Paint textPaint, bigCirclePaint, bigCircleBatteryPaint;
 
-        private ErrorCodeDisplayer errorCodeDisplayer;
+        private BatteryTool batteryTool;
 
         private Handler handler = new Handler();
         private Runnable runnable = new Runnable() {
@@ -80,10 +80,7 @@ public class ClockWallpaperService extends WallpaperService{
             showText = setting.isShowClock();
             showSecondCircle = setting.getShow2Layer();
             secondSplit = setting.get2ndLayerSplit();
-            enableClick = setting.getShowError();
-
-            errorCodeDisplayer = new ErrorCodeDisplayer(context);
-            errorCodeDisplayer.setRad(color.contains(Setting.COLOR_RAD));
+            showBattery = setting.isShowBattery();
 
             textPaint = new Paint();
             textPaint.setAntiAlias(true);
@@ -96,7 +93,11 @@ public class ClockWallpaperService extends WallpaperService{
             bigCirclePaint.setColor(Color.parseColor(color));
             bigCirclePaint.setStyle(Paint.Style.STROKE);
 
+            bigCircleBatteryPaint = new Paint(bigCirclePaint);
+            bigCircleBatteryPaint.setColor(Color.parseColor(setting.getFadeColor()));
+
             drawSecondTool = new DrawSecondTool(secondSplit, color, setting.getFadeColor());
+            batteryTool = new BatteryTool(context);
         }
 
         private void draw(){
@@ -108,29 +109,39 @@ public class ClockWallpaperService extends WallpaperService{
                 bigCirclePaint.setStrokeWidth(getCircleStrokeW(canvas));
                 float x = canvas.getWidth()/ 2;
                 float y = canvas.getHeight() / 2;
-                canvas.drawCircle(x, y, getBigCircleRadius(canvas), bigCirclePaint);
+
+                if(showBattery){
+                    bigCircleBatteryPaint.setStrokeWidth(getCircleStrokeW(canvas));
+                    canvas.drawCircle(x, y, getBigCircleRadius(canvas), bigCircleBatteryPaint);
+                    float r = getBigCircleRadius(canvas);
+                    float left = (canvas.getWidth()/2) - r;
+                    float top = (canvas.getHeight() / 2) - r;
+                    float right = left + (2*r);
+                    float btn = top + (2*r);
+                    RectF rectF = new RectF(left, top, right, btn);
+                    canvas.drawArc(rectF, -90 , (360*batteryTool.getBatteryPct()) ,false, bigCirclePaint );
+                }else {
+                    canvas.drawCircle(x, y, getBigCircleRadius(canvas), bigCirclePaint);
+                }
+
                 splitCircleH = getSecondCircleH(canvas);
 
-                if(errorCodeDisplayer.isShow()){
-                    errorCodeDisplayer.display(canvas, countTextSize(splitCircleH), Calendar.getInstance().get(Calendar.SECOND));
-                }else {
-                    if(showText){
-                        textH = countTextSize(splitCircleH);
-                        textPaint.setTextSize(textH);
-                        String s = ClockFragment.createNowTimeText();
-                        float textLen = textPaint.measureText(s);
-                        float x2 = (canvas.getWidth() - textLen)/ 2;
-                        float y2 = (canvas.getHeight())/ 2 + (textH / 4);
-                        canvas.drawText(s,x2,y2,textPaint);
-                    }
+                if(showText){
+                    textH = countTextSize(splitCircleH);
+                    textPaint.setTextSize(textH);
+                    String s = ClockFragment.createNowTimeText();
+                    float textLen = textPaint.measureText(s);
+                    float x2 = (canvas.getWidth() - textLen)/ 2;
+                    float y2 = (canvas.getHeight())/ 2 + (textH / 4);
+                    canvas.drawText(s,x2,y2,textPaint);
+                }
 
-                    if(showSecondCircle){
-                        float leftMargin = (canvas.getWidth() - splitCircleH)/2;
-                        float topMargin = (canvas.getHeight() - splitCircleH)/2;
-                        RectF rectF = new RectF(leftMargin, topMargin, leftMargin + splitCircleH , topMargin + splitCircleH);
-                        drawSecondTool.setRectF(rectF);
-                        drawSecondTool.drawCanvas(canvas);
-                    }
+                if(showSecondCircle){
+                    float leftMargin = (canvas.getWidth() - splitCircleH)/2;
+                    float topMargin = (canvas.getHeight() - splitCircleH)/2;
+                    RectF rectF = new RectF(leftMargin, topMargin, leftMargin + splitCircleH , topMargin + splitCircleH);
+                    drawSecondTool.setRectF(rectF);
+                    drawSecondTool.drawCanvas(canvas);
                 }
 
 
@@ -157,16 +168,6 @@ public class ClockWallpaperService extends WallpaperService{
         public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
             super.onSurfaceRedrawNeeded(holder);
             init(getApplicationContext());
-        }
-
-        @Override
-        public void onTouchEvent(MotionEvent event) {
-            super.onTouchEvent(event);
-            if(event.getActionMasked() == MotionEvent.ACTION_DOWN && enableClick){
-                if(errorCodeDisplayer != null){
-                    errorCodeDisplayer.setShow(true);
-                }
-            }
         }
 
         private void run(boolean isRun){

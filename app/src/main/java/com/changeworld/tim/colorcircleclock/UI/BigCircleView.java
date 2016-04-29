@@ -46,15 +46,13 @@ public class BigCircleView extends View{
         paint.setStrokeWidth(strokeW);
         paint.setStyle(Paint.Style.STROKE);
 
-        batteryTool = new BatteryTool(context);
+        if(setting.isShowBattery()){
+            batteryTool = new BatteryTool(context);
+            shadowPaint = new Paint(paint);
+            shadowPaint.setColor(Color.parseColor(setting.getFadeColor()));
+        }
 
-//        if(setting.isShowMainCircleShadow()){
-//            shadowPaint = new Paint();
-//            shadowPaint.setAntiAlias(true);
-//            shadowPaint.setColor(Color.parseColor(setting.getFadeColor()));
-//            shadowPaint.setStrokeWidth(strokeW);
-//            shadowPaint.setStyle(Paint.Style.STROKE);
-//        }
+
     }
 
     @Override
@@ -71,6 +69,8 @@ public class BigCircleView extends View{
                 if(rectF == null){
                     rectF = new RectF(strokeW, strokeW, canvas.getWidth() - strokeW, canvas.getHeight() - strokeW);
                 }
+
+                canvas.drawCircle(radius ,radius , radius - strokeW , shadowPaint);
                 canvas.drawArc(rectF, -90 , (360*batteryTool.getBatteryPct()) ,false, paint );
             }else {
                 canvas.drawCircle(radius ,radius , radius - strokeW , paint);

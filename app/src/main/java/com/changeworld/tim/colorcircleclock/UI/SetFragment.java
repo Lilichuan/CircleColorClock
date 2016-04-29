@@ -77,12 +77,12 @@ public class SetFragment extends Fragment {
             }
         });
 
-        CheckBox displayError = (CheckBox)root.findViewById(R.id.showErrorMsg);
-        displayError.setChecked(setting.getShowError());
-        displayError.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox showBattery = (CheckBox)root.findViewById(R.id.showBattery);
+        showBattery.setChecked(setting.isShowBattery());
+        showBattery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                setting.setShowError(b);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setting.setShowBattery(isChecked);
             }
         });
 

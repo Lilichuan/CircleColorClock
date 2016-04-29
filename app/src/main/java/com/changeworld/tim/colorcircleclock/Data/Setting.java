@@ -21,6 +21,7 @@ public class Setting {
     private static final String KEY_COLOR = "color";
     private static final String KEY_ERROR = "error";
     private static final String KEY_MAIN_SHADOW = "mainShadow";
+    private static final String KEY_SHOW_BATTERY = "showBattery";
 
     public static final int CIRCLE_SPLIT_MAX = 180;
     public static final int CIRCLE_SPLIT_MINI = 3;
@@ -99,22 +100,22 @@ public class Setting {
 
         switch (selectColor){
             case Setting.COLOR_GREEN:
-                color = "#c8e6c9";
+                color = "#19271a";
                 break;
             case Setting.COLOR_ORANGE:
                 color = "#6b2c07";
                 break;
             case Setting.COLOR_PURPLE:
-                color = "#e1bee7";
+                color = "#371F3C";
                 break;
             case Setting.COLOR_BLUE:
-                color = "#b3e5fc";
+                color = "#263F4B";
                 break;
             case Setting.COLOR_RAD :
-                color = "#590000";
+                color = "#470000";
                 break;
             case Setting.COLOR_BARNEY:
-                color = "#690026";
+                color = "#340013";
                 break;
             default:
                 color = "#ffffff";
@@ -122,20 +123,6 @@ public class Setting {
 
         return color;
     }
-
-
-    /*
-    *
-    * Error
-    * */
-    public void setShowError(boolean showError){
-        sharedPreferences.edit().putBoolean(KEY_ERROR, showError).apply();
-    }
-
-    public boolean getShowError(){
-        return sharedPreferences.getBoolean(KEY_ERROR, false);
-    }
-
 
     /*
     *
@@ -147,5 +134,16 @@ public class Setting {
 
     public boolean isShowMainCircleShadow(){
         return sharedPreferences.getBoolean(KEY_MAIN_SHADOW, false);
+    }
+
+    /*
+    *
+    * */
+    public void setShowBattery(boolean showBattery){
+        sharedPreferences.edit().putBoolean(KEY_SHOW_BATTERY, showBattery).apply();
+    }
+
+    public boolean isShowBattery(){
+        return sharedPreferences.getBoolean(KEY_SHOW_BATTERY, false);
     }
 }
