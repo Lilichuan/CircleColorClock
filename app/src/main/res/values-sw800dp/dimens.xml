@@ -5,4 +5,6 @@
     <dimen name="clockTextSize">60sp</dimen>
     <integer name="clockTextSizeInt">60</integer>
     <integer name="main_circle_stroke_w">50</integer>
+
+    <dimen name="widget_h">100dp</dimen>
 </resources>
