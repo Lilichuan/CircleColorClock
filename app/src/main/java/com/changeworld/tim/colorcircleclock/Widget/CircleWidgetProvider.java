@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.R;
 
@@ -24,7 +25,8 @@ public class CircleWidgetProvider extends AppWidgetProvider {
             // Get the layout for the App Widget and attach an on-click listener
             // to the button
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            //views.setOnClickPendingIntent(R.id.button, pendingIntent);
+
+            views.setTextViewText(R.id.text, "ABC");
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);

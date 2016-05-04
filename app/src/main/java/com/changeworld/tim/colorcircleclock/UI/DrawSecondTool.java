@@ -26,11 +26,8 @@ public class DrawSecondTool {
         paint.setStrokeWidth((float) 20.0);
         paint.setStyle(Paint.Style.STROKE);
 
-        selectPaint = new Paint();
-        selectPaint.setAntiAlias(true);
+        selectPaint = new Paint(paint);
         selectPaint.setColor(Color.parseColor(selectColor));
-        selectPaint.setStrokeWidth((float) 20.0);
-        selectPaint.setStyle(Paint.Style.STROKE);
 
         arcCount = count;
         float SEPARATE_DEGREE = 3;
@@ -38,7 +35,6 @@ public class DrawSecondTool {
         if(totalUnitDegree <= SEPARATE_DEGREE){
             SEPARATE_DEGREE = totalUnitDegree / 2;
         }
-
 
         unitDegree = totalUnitDegree - SEPARATE_DEGREE;
     }

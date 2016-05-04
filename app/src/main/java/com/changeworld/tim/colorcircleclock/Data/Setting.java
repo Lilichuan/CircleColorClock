@@ -4,11 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.changeworld.tim.colorcircleclock.MainActivity;
 
-/**
- * Created by tim on 2016/4/8.
- */
 public class Setting {
 
     private static final String SP_NAME = "set";
@@ -95,7 +91,10 @@ public class Setting {
     }
 
     public String getFadeColor(){
-        String selectColor = getColor();
+        return getFadeColor(getColor());
+    }
+
+    public static String getFadeColor(String selectColor){
         String color;
 
         switch (selectColor){
@@ -122,18 +121,6 @@ public class Setting {
         }
 
         return color;
-    }
-
-    /*
-    *
-    * Main circle shadow setting
-    * */
-    public void setShowMainCircleShadow(boolean show){
-        sharedPreferences.edit().putBoolean(KEY_MAIN_SHADOW, show).apply();
-    }
-
-    public boolean isShowMainCircleShadow(){
-        return sharedPreferences.getBoolean(KEY_MAIN_SHADOW, false);
     }
 
     /*

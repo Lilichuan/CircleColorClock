@@ -6,4 +6,6 @@
     <integer name="main_circle_stroke_w">20</integer>
 
     <dimen name="widget_h">100dp</dimen>
+    <integer name="widget_h">100</integer>
+    <integer name="widget_stroke_w">10</integer>
 </resources>
