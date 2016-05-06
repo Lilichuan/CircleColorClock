@@ -35,11 +35,12 @@ public class BatteryTool {
         return batteryPct;
     }
 
-    private void getBatteryAgain(){
+    public float getBatteryAgain(){
         Intent batteryStatus = context.registerReceiver(null, ifilter);
         int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
         batteryPct = level / (float)scale;
+        return batteryPct;
     }
 }

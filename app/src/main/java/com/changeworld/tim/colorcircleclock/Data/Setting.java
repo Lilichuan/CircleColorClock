@@ -28,6 +28,7 @@ public class Setting {
     public static final String COLOR_BLUE = "#81d4fa";
     public static final String COLOR_RAD = "#b20000";
     public static final String COLOR_BARNEY = "#B00140";
+    public static final String COLOR_YELLOW = "#ffd700";
 
 
 
@@ -98,23 +99,26 @@ public class Setting {
         String color;
 
         switch (selectColor){
-            case Setting.COLOR_GREEN:
+            case COLOR_GREEN:
                 color = "#19271a";
                 break;
-            case Setting.COLOR_ORANGE:
+            case COLOR_ORANGE:
                 color = "#6b2c07";
                 break;
-            case Setting.COLOR_PURPLE:
+            case COLOR_PURPLE:
                 color = "#371F3C";
                 break;
-            case Setting.COLOR_BLUE:
+            case COLOR_BLUE:
                 color = "#263F4B";
                 break;
-            case Setting.COLOR_RAD :
+            case COLOR_RAD :
                 color = "#470000";
                 break;
-            case Setting.COLOR_BARNEY:
+            case COLOR_BARNEY:
                 color = "#340013";
+                break;
+            case Setting.COLOR_YELLOW:
+                color = "#665600";
                 break;
             default:
                 color = "#ffffff";

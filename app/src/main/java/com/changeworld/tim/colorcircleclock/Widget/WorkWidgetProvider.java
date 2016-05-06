@@ -9,8 +9,10 @@ import android.widget.RemoteViews;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
 
-//WeekDay
-public class CircleWidgetProvider extends AppWidgetProvider {
+/**
+ * Created by tim on 2016/5/6.
+ */
+public class WorkWidgetProvider extends AppWidgetProvider {
 
     private WidgetTool widgetTool;
 
@@ -30,7 +32,7 @@ public class CircleWidgetProvider extends AppWidgetProvider {
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
         if(widgetTool == null){
-            widgetTool = new WidgetTool(context, Setting.COLOR_BLUE);
+            widgetTool = new WidgetTool(context, Setting.COLOR_GREEN);
         }
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         views.setTextViewText(R.id.text, "ABC");

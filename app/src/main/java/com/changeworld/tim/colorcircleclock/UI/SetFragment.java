@@ -164,6 +164,9 @@ public class SetFragment extends Fragment {
                     case 5:
                         s = Setting.COLOR_BARNEY;
                         break;
+                    case 6:
+                        s = Setting.COLOR_YELLOW;
+                        break;
                     default:
                         s = Setting.COLOR_ORANGE;
                 }

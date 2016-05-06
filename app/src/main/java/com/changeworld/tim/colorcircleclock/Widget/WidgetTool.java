@@ -22,6 +22,7 @@ public class WidgetTool {
     private int SPLIT = 10;
 
     private Canvas canvas;
+    private Bitmap bmp;
 
     private RectF percentRectF ,splitRectF;
 
@@ -43,7 +44,7 @@ public class WidgetTool {
 
     private void initCanvas(){
 
-        Bitmap bmp = Bitmap.createBitmap(widgetH, widgetH, Bitmap.Config.ARGB_4444);
+        bmp = Bitmap.createBitmap(widgetH, widgetH, Bitmap.Config.ARGB_4444);
         canvas = new Canvas(bmp);
 
         percentRectF = new RectF(stroke_w, stroke_w, canvas.getWidth() - stroke_w, canvas.getHeight() - stroke_w);
@@ -75,7 +76,7 @@ public class WidgetTool {
     }
 
 
-    public void drawSplitCanvas(Canvas canvas, int select){
+    private void drawSplitCanvas(int select){
 
         for (int i = 0 ; i < select ;i++){
 
@@ -103,7 +104,14 @@ public class WidgetTool {
 
     }
 
-    public void drawPercentCanvas(Canvas canvas, float percent){
+    public Bitmap draw(int select, float percent){
+        drawSplitCanvas(select);
+        drawPercentCanvas(percent);
+        canvas.save();
+        return bmp;
+    }
+
+    private void drawPercentCanvas(float percent){
         float radius = (percentRectF.width() / 2);
         canvas.drawCircle(radius ,radius , radius - stroke_w , percentFadePaint);
         canvas.drawArc(percentRectF, -90 , (360*percent) ,false, paint );

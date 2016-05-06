@@ -6,13 +6,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
+import com.changeworld.tim.colorcircleclock.Data.BatteryTool;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
 
-//WeekDay
-public class CircleWidgetProvider extends AppWidgetProvider {
-
+/**
+ * Created by tim on 2016/5/6.
+ */
+public class BatteryWidgetProvider extends AppWidgetProvider {
     private WidgetTool widgetTool;
+    private BatteryTool batteryTool;
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
@@ -30,10 +33,18 @@ public class CircleWidgetProvider extends AppWidgetProvider {
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
         if(widgetTool == null){
-            widgetTool = new WidgetTool(context, Setting.COLOR_BLUE);
+            widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW);
         }
+
+        if(batteryTool == null){
+            batteryTool = new BatteryTool(context);
+        }
+
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         views.setTextViewText(R.id.text, "ABC");
+
+        float select = batteryTool.getBatteryAgain();;
+        views.setImageViewBitmap(R.id.circle,widgetTool.draw((int)select*10, select));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }

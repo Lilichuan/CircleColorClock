@@ -7,6 +7,5 @@
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>
-<!-- Weekday -->
-<!--android:configure="com.example.android.ExampleAppWidgetConfigure"-->
-<!--android:previewImage="@drawable/preview"-->
+    <!--android:configure="com.example.android.ExampleAppWidgetConfigure"-->
+    <!--android:previewImage="@drawable/preview"-->
