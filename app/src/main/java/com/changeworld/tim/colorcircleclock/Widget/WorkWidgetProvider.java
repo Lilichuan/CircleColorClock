@@ -29,14 +29,13 @@ public class WorkWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-        Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
         reDraw(context, appWidgetManager, appWidgetId);
     }
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
 
         Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
-        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
 
         widgetTool = new WidgetTool(context, Setting.COLOR_GREEN, h);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
@@ -48,16 +47,16 @@ public class WorkWidgetProvider extends AppWidgetProvider {
         float a = 0;
 
         if(now > 21 ){
-            a = (now - 21) / 9;
+            a = ((float) (now - 21)) / (float)9;
         }else if(now < 6){
-            a = (now + 3) / 9;
+            a = ((float) (now + 3)) / (float) 9;
         }else if(now >= 6 || now <= 21){
-            a = (float) now / (float) full;
+            a = ((float) now) / (float) full;
         }
 
-        int pers = (int)a*100;
+        int pers = (int)(a*100);
         views.setTextViewText(R.id.text, pers + "%");
-        views.setImageViewBitmap(R.id.circle, widgetTool.draw(pers / 10, a));
+        views.setImageViewBitmap(R.id.circle, widgetTool.draw((int)(a * 10), a));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }

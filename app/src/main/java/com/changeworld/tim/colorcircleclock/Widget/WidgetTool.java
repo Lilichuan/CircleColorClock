@@ -54,7 +54,7 @@ public class WidgetTool {
         canvas = new Canvas(bmp);
 
         percentRectF = new RectF(stroke_w, stroke_w, canvas.getWidth() - stroke_w, canvas.getHeight() - stroke_w);
-        int margin = stroke_w * 2;
+        int margin = (int)(stroke_w * 2.5);
         splitRectF = new RectF(margin, margin, canvas.getWidth() - margin, canvas.getHeight() - margin);
     }
 

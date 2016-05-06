@@ -28,7 +28,6 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-
         reDraw(context, appWidgetManager, appWidgetId);
     }
 
