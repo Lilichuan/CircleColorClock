@@ -19,13 +19,4 @@
         android:textColor="@color/white"
         android:textSize="@dimen/normal_text_size"/>
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/small_text_size"/>
-
 </RelativeLayout>

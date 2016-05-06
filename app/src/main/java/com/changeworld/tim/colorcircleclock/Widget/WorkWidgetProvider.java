@@ -56,6 +56,7 @@ public class WorkWidgetProvider extends AppWidgetProvider {
 
         int pers = (int)(a*100);
         views.setTextViewText(R.id.text, pers + "%");
+        views.setTextViewText(R.id.text2, context.getString(R.string.strength));
         views.setImageViewBitmap(R.id.circle, widgetTool.draw((int)(a * 10), a));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

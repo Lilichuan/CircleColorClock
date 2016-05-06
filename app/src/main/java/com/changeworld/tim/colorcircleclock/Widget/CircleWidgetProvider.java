@@ -71,7 +71,7 @@ public class CircleWidgetProvider extends AppWidgetProvider {
                 break;
         }
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout_2);
         views.setTextViewText(R.id.text, text);
         views.setImageViewBitmap(R.id.circle, widgetTool.draw(dayOfWeek - 1, (float) adjustDayOfWeek / 7f));
         appWidgetManager.updateAppWidget(appWidgetId, views);

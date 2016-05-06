@@ -34,4 +34,7 @@
     <string name="displayMainShadow">顯示主圈陰影</string>
     <string name="showBattery">在主環上呈現裝置剩餘電力</string>
 
+    <string name="battery">電量</string>
+    <string name="strength">精神力</string>
+
 </resources>

@@ -47,6 +47,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         views.setTextViewText(R.id.text, percent + "%");
+        views.setTextViewText(R.id.text2, context.getString(R.string.battery));
 
         views.setImageViewBitmap(R.id.circle, widgetTool.draw((int)select*10, select));
         appWidgetManager.updateAppWidget(appWidgetId, views);
