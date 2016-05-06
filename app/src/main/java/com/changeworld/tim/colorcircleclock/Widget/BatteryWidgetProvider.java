@@ -23,18 +23,21 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
             int appWidgetId = appWidgetIds[0];
             reDraw(context, appWidgetManager, appWidgetId);
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-        Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
+
         reDraw(context, appWidgetManager, appWidgetId);
     }
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
-        if(widgetTool == null){
-            widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW);
-        }
+
+        Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
+        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+
+        widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW,h);
 
         if(batteryTool == null){
             batteryTool = new BatteryTool(context);
@@ -44,7 +47,9 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
         views.setTextViewText(R.id.text, "ABC");
 
         float select = batteryTool.getBatteryAgain();;
-        views.setImageViewBitmap(R.id.circle,widgetTool.draw((int)select*10, select));
+        views.setImageViewBitmap(R.id.circle, widgetTool.draw((int)select*10, select));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
+
+
 }

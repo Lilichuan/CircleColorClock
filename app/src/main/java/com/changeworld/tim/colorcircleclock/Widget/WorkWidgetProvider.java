@@ -22,6 +22,7 @@ public class WorkWidgetProvider extends AppWidgetProvider {
             int appWidgetId = appWidgetIds[0];
             reDraw(context, appWidgetManager, appWidgetId);
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     @Override
@@ -31,9 +32,11 @@ public class WorkWidgetProvider extends AppWidgetProvider {
     }
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
-        if(widgetTool == null){
-            widgetTool = new WidgetTool(context, Setting.COLOR_GREEN);
-        }
+
+        Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
+        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+
+        widgetTool = new WidgetTool(context, Setting.COLOR_GREEN, h);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         views.setTextViewText(R.id.text, "ABC");
         appWidgetManager.updateAppWidget(appWidgetId, views);

@@ -27,15 +27,22 @@ public class WidgetTool {
     private RectF percentRectF ,splitRectF;
 
 
-    public WidgetTool(Context context,String color){
+    public WidgetTool(Context context,String color, int w_InDP){
+        init(context, color, w_InDP);
+    }
+
+    public WidgetTool(Context context,String color, int w_InDP, int split){
+        SPLIT = split;
+        init(context, color, w_InDP);
+    }
+
+    private void init(Context context,String color, int w_InDP){
         stroke_w = TypedValue.COMPLEX_UNIT_DIP * context.getResources().getInteger(R.integer.widget_stroke_w);
         smaller_stroke_w = (float) (stroke_w * (0.7));
-        widgetH = TypedValue.COMPLEX_UNIT_DIP * context.getResources().getInteger(R.integer.widget_h);
+        widgetH = TypedValue.COMPLEX_UNIT_DIP * w_InDP;
 
         initCanvas();
-
         String fadeColor = Setting.getFadeColor(color);
-
         initPercent(color, fadeColor);
         initSplit(color, fadeColor);
     }
@@ -43,7 +50,6 @@ public class WidgetTool {
 
 
     private void initCanvas(){
-
         bmp = Bitmap.createBitmap(widgetH, widgetH, Bitmap.Config.ARGB_4444);
         canvas = new Canvas(bmp);
 
@@ -55,7 +61,7 @@ public class WidgetTool {
     private Paint paint ,selectPaint;
     private float totalUnitDegree, unitDegree;
 
-    public void initSplit(String selectColor, String fadeColor) {
+    private void initSplit(String selectColor, String fadeColor) {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(Color.parseColor(fadeColor));
@@ -81,9 +87,9 @@ public class WidgetTool {
         for (int i = 0 ; i < select ;i++){
 
             if(i <= select){
-                canvas.drawArc(splitRectF, totalUnitDegree*i, unitDegree, false, selectPaint );
+                canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, selectPaint );
             }else {
-                canvas.drawArc(splitRectF, totalUnitDegree*i, unitDegree, false, paint );
+                canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, paint );
             }
         }
 
@@ -99,7 +105,7 @@ public class WidgetTool {
         percentMainPaint.setStrokeWidth(stroke_w);
         percentMainPaint.setStyle(Paint.Style.STROKE);
 
-        percentFadePaint = new Paint(paint);
+        percentFadePaint = new Paint(percentMainPaint);
         percentFadePaint.setColor(Color.parseColor(fadeColor));
 
     }
@@ -113,7 +119,7 @@ public class WidgetTool {
 
     private void drawPercentCanvas(float percent){
         float radius = (percentRectF.width() / 2);
-        canvas.drawCircle(radius ,radius , radius - stroke_w , percentFadePaint);
-        canvas.drawArc(percentRectF, -90 , (360*percent) ,false, paint );
+        canvas.drawCircle(radius + stroke_w ,radius + stroke_w , radius  , percentFadePaint);
+        canvas.drawArc(percentRectF, -90 , (360*percent) ,false, percentMainPaint );
     }
 }
