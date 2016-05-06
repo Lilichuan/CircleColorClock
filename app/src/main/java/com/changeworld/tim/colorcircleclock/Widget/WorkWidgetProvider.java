@@ -9,6 +9,8 @@ import android.widget.RemoteViews;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
 
+import java.util.Calendar;
+
 /**
  * Created by tim on 2016/5/6.
  */
@@ -38,7 +40,24 @@ public class WorkWidgetProvider extends AppWidgetProvider {
 
         widgetTool = new WidgetTool(context, Setting.COLOR_GREEN, h);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-        views.setTextViewText(R.id.text, "ABC");
+
+
+        int full = 21 - 6;
+        int now = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        float a = 0;
+
+        if(now > 21 ){
+            a = (now - 21) / 9;
+        }else if(now < 6){
+            a = (now + 3) / 9;
+        }else if(now >= 6 || now <= 21){
+            a = (float) now / (float) full;
+        }
+
+        int pers = (int)a*100;
+        views.setTextViewText(R.id.text, pers + "%");
+        views.setImageViewBitmap(R.id.circle, widgetTool.draw(pers / 10, a));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }

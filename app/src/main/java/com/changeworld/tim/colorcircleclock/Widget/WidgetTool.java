@@ -37,7 +37,7 @@ public class WidgetTool {
     }
 
     private void init(Context context,String color, int w_InDP){
-        stroke_w = TypedValue.COMPLEX_UNIT_DIP * context.getResources().getInteger(R.integer.widget_stroke_w);
+        stroke_w = TypedValue.COMPLEX_UNIT_DIP * 10;
         smaller_stroke_w = (float) (stroke_w * (0.7));
         widgetH = TypedValue.COMPLEX_UNIT_DIP * w_InDP;
 
@@ -68,8 +68,11 @@ public class WidgetTool {
         paint.setStrokeWidth(smaller_stroke_w);
         paint.setStyle(Paint.Style.STROKE);
 
-        selectPaint = new Paint(paint);
+        selectPaint = new Paint();
+        selectPaint.setAntiAlias(true);
         selectPaint.setColor(Color.parseColor(selectColor));
+        selectPaint.setStrokeWidth(smaller_stroke_w);
+        selectPaint.setStyle(Paint.Style.STROKE);
 
         float SEPARATE_DEGREE = 3;
         totalUnitDegree = ((float) (360)) / SPLIT;
@@ -84,9 +87,9 @@ public class WidgetTool {
 
     private void drawSplitCanvas(int select){
 
-        for (int i = 0 ; i < select ;i++){
+        for (int i = 0 ; i < SPLIT ;i++){
 
-            if(i <= select){
+            if(i < select){
                 canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, selectPaint );
             }else {
                 canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, paint );
@@ -105,8 +108,11 @@ public class WidgetTool {
         percentMainPaint.setStrokeWidth(stroke_w);
         percentMainPaint.setStyle(Paint.Style.STROKE);
 
-        percentFadePaint = new Paint(percentMainPaint);
+        percentFadePaint = new Paint();
+        percentFadePaint.setAntiAlias(true);
         percentFadePaint.setColor(Color.parseColor(fadeColor));
+        percentFadePaint.setStrokeWidth(stroke_w);
+        percentFadePaint.setStyle(Paint.Style.STROKE);
 
     }
 

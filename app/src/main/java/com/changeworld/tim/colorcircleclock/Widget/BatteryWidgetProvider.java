@@ -35,7 +35,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
 
         Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
-        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
 
         widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW,h);
 
@@ -43,10 +43,12 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
             batteryTool = new BatteryTool(context);
         }
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-        views.setTextViewText(R.id.text, "ABC");
+        float select = batteryTool.getBatteryAgain();
+        int percent = ((int)(select*100));
 
-        float select = batteryTool.getBatteryAgain();;
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+        views.setTextViewText(R.id.text, percent + "%");
+
         views.setImageViewBitmap(R.id.circle, widgetTool.draw((int)select*10, select));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

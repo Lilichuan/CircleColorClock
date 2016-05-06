@@ -12,6 +12,5 @@
     <dimen name="bigger_text_size">26sp</dimen>
 
     <dimen name="widget_h">100dp</dimen>
-    <integer name="widget_h">100</integer>
-    <integer name="widget_stroke_w">10</integer>
+
 </resources>
