@@ -40,8 +40,6 @@ public class WorkWidgetProvider extends AppWidgetProvider {
         widgetTool = new WidgetTool(context, Setting.COLOR_GREEN, h);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
-
-        int full = 21 - 6;
         int now = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
         float a = 0;
@@ -51,7 +49,7 @@ public class WorkWidgetProvider extends AppWidgetProvider {
         }else if(now < 6){
             a = ((float) (now + 3)) / (float) 9;
         }else if(now >= 6 || now <= 21){
-            a = ((float) now) / (float) full;
+            a = ((float) (21-now)) / (float) 15;
         }
 
         int pers = (int)(a*100);
