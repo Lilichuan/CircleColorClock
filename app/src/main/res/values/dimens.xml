@@ -12,6 +12,7 @@
     <dimen name="normal_text_size">20sp</dimen>
     <dimen name="bigger_text_size">26sp</dimen>
 
-    <dimen name="widget_h">160dp</dimen>
+    <dimen name="widget_h">100dp</dimen>
+    <dimen name="widget_max_h">170dp</dimen>
 
 </resources>
