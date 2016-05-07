@@ -48,32 +48,32 @@ public class CircleWidgetProvider extends AppWidgetProvider {
         int adjustDayOfWeek = 0;
 
         switch (dayOfWeek){
-            case 1:
+            case Calendar.SUNDAY:
                 adjustDayOfWeek = 7;
                 break;
-            case 2:
+            case Calendar.MONDAY:
                 adjustDayOfWeek = 1;
                 break;
-            case 3:
+            case Calendar.TUESDAY:
                 adjustDayOfWeek = 2;
                 break;
-            case 4:
+            case Calendar.WEDNESDAY:
                 adjustDayOfWeek = 3;
                 break;
-            case 5:
+            case Calendar.THURSDAY:
                 adjustDayOfWeek = 4;
                 break;
-            case 6:
+            case Calendar.FRIDAY:
                 adjustDayOfWeek = 5;
                 break;
-            case 7:
+            case Calendar.SATURDAY:
                 adjustDayOfWeek = 6;
                 break;
         }
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout_2);
         views.setTextViewText(R.id.text, text);
-        views.setImageViewBitmap(R.id.circle, widgetTool.draw(dayOfWeek - 1, (float) adjustDayOfWeek / 7f));
+        views.setImageViewBitmap(R.id.circle, widgetTool.draw(adjustDayOfWeek, (float) adjustDayOfWeek / 7f));
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }
