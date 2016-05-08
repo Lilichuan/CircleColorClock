@@ -23,12 +23,12 @@ public class Setting {
     public static final int CIRCLE_SPLIT_MINI = 3;
 
     public static final String COLOR_ORANGE = "#ff6a13";
-    public static final String COLOR_GREEN = "#81c784";
+    public static final String COLOR_GREEN = "#91E061";
     public static final String COLOR_PURPLE = "#ba68c8";
-    public static final String COLOR_BLUE = "#81d4fa";
+    public static final String COLOR_BLUE = "#4c97ed";
     public static final String COLOR_RAD = "#b20000";
     public static final String COLOR_BARNEY = "#B00140";
-    public static final String COLOR_YELLOW = "#ffd700";
+    public static final String COLOR_YELLOW = "#e0af54";
 
 
 
@@ -100,7 +100,7 @@ public class Setting {
 
         switch (selectColor){
             case COLOR_GREEN:
-                color = "#19271a";
+                color = "#57863A";
                 break;
             case COLOR_ORANGE:
                 color = "#6b2c07";
@@ -109,7 +109,7 @@ public class Setting {
                 color = "#371F3C";
                 break;
             case COLOR_BLUE:
-                color = "#263F4B";
+                color = "#264B76";
                 break;
             case COLOR_RAD :
                 color = "#470000";
@@ -118,7 +118,7 @@ public class Setting {
                 color = "#340013";
                 break;
             case Setting.COLOR_YELLOW:
-                color = "#665600";
+                color = "#9C7A3A";
                 break;
             default:
                 color = "#ffffff";
