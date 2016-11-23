@@ -35,7 +35,7 @@
         <item>Error:Bishop hacked</item>
     </string-array>
 
-    <string name="battery">Bettery</string>
+    <string name="battery">Battery</string>
     <string name="strength">Strength</string>
 
 </resources>

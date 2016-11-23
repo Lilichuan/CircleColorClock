@@ -62,9 +62,6 @@ public class BigCircleView extends View{
         if(!pause){
             int radius = canvas.getWidth() / 2;
 
-//            if(shadowPaint != null){
-//                canvas.drawCircle(radius ,radius , radius - (strokeW / 2), shadowPaint);
-//            }
             if(batteryTool != null){
                 if(rectF == null){
                     rectF = new RectF(strokeW, strokeW, canvas.getWidth() - strokeW, canvas.getHeight() - strokeW);
@@ -79,10 +76,6 @@ public class BigCircleView extends View{
         }
 
         canvas.save();
-    }
-
-    public boolean isPause(){
-        return pause;
     }
 
     public void setPause(boolean pause) {

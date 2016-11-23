@@ -9,11 +9,8 @@ import android.graphics.RectF;
 import android.util.TypedValue;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
-import com.changeworld.tim.colorcircleclock.R;
 
-/**
- * Created by tim on 2016/5/4.
- */
+
 public class WidgetTool {
 
     private int stroke_w,  widgetH;

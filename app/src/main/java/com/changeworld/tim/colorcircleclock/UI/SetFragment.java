@@ -25,7 +25,7 @@ public class SetFragment extends Fragment {
     private TextView splitCountText;
 
     public SetFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -39,9 +39,6 @@ public class SetFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//
-//        }
     }
 
     @Override
@@ -85,15 +82,6 @@ public class SetFragment extends Fragment {
                 setting.setShowBattery(isChecked);
             }
         });
-
-//        CheckBox displayShadow = (CheckBox)root.findViewById(R.id.showShadow);
-//        displayShadow.setChecked(setting.isShowMainCircleShadow());
-//        displayShadow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                setting.setShowMainCircleShadow(b);
-//            }
-//        });
 
         initSecondCircleSettingView(root);
         initColorSelect(root);

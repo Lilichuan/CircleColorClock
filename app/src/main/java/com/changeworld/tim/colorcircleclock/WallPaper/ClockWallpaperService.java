@@ -8,15 +8,12 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 import com.changeworld.tim.colorcircleclock.Data.BatteryTool;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.UI.ClockFragment;
 import com.changeworld.tim.colorcircleclock.UI.DrawSecondTool;
-
-import java.util.Calendar;
 
 
 public class ClockWallpaperService extends WallpaperService{
@@ -51,7 +48,7 @@ public class ClockWallpaperService extends WallpaperService{
             }
         };
 
-        public ClockWallPaperEngine(Context context){
+        ClockWallPaperEngine(Context context){
             init(context);
         }
 

@@ -10,11 +10,8 @@ import com.changeworld.tim.colorcircleclock.Data.BatteryTool;
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
 
-/**
- * Created by tim on 2016/5/6.
- */
+
 public class BatteryWidgetProvider extends AppWidgetProvider {
-    private WidgetTool widgetTool;
     private BatteryTool batteryTool;
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -36,7 +33,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
         Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
         int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
 
-        widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW,h);
+        WidgetTool widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW,h);
 
         if(batteryTool == null){
             batteryTool = new BatteryTool(context);

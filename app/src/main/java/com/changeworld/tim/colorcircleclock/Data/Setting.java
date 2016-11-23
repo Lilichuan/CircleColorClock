@@ -15,8 +15,6 @@ public class Setting {
     private static final String KEY_DISPLAY_2_LAYER = "secondLayer";
     private static final String KEY_2_LAYER_COUNT = "secondLayerCount";
     private static final String KEY_COLOR = "color";
-    private static final String KEY_ERROR = "error";
-    private static final String KEY_MAIN_SHADOW = "mainShadow";
     private static final String KEY_SHOW_BATTERY = "showBattery";
 
     public static final int CIRCLE_SPLIT_MAX = 180;
