@@ -47,6 +47,7 @@ public class WidgetTool {
 
 
     private void initCanvas(){
+        //TODO 此行當機
         bmp = Bitmap.createBitmap(widgetH, widgetH, Bitmap.Config.ARGB_4444);
         canvas = new Canvas(bmp);
 
