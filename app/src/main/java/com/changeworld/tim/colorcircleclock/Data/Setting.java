@@ -12,7 +12,7 @@ public class Setting {
 
     private static final String SP_NAME = "set";
 
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sp;
 
     private static final String KEY_SHOW_CLOCK = "showClock";
     private static final String KEY_DISPLAY_2_LAYER = "secondLayer";
@@ -34,64 +34,70 @@ public class Setting {
 
 
     public Setting(Context context){
-        sharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
     }
 
     /*
     *
     * Display clock setting
+    * 是否呈現時鐘數字
     * */
     public void setShowClock(boolean show){
-        sharedPreferences.edit().putBoolean(KEY_SHOW_CLOCK, show).apply();
+        sp.edit().putBoolean(KEY_SHOW_CLOCK, show).apply();
     }
 
     public boolean isShowClock(){
-        return sharedPreferences.getBoolean(KEY_SHOW_CLOCK, true);
+        return sp.getBoolean(KEY_SHOW_CLOCK, true);
     }
 
 
     /*
     *
     * Display two circles setting
+    * 是否呈現第二圈內圈
     * */
     public void setShow2Layer(boolean show){
-        sharedPreferences.edit().putBoolean(KEY_DISPLAY_2_LAYER, show).apply();
+        sp.edit().putBoolean(KEY_DISPLAY_2_LAYER, show).apply();
     }
 
     public boolean getShow2Layer(){
-        return sharedPreferences.getBoolean(KEY_DISPLAY_2_LAYER, false);
+        return sp.getBoolean(KEY_DISPLAY_2_LAYER, false);
     }
 
     /*
     *
     * 2nd circle split count setting
+    * 內圈第二圈分裂多少段
     * */
     public void set2ndLayerSplit(int count){
         if(count < 2){
             return;
         }
-        sharedPreferences.edit().putInt(KEY_2_LAYER_COUNT, count).apply();
+        sp.edit().putInt(KEY_2_LAYER_COUNT, count).apply();
     }
 
     public int get2ndLayerSplit(){
-        return sharedPreferences.getInt(KEY_2_LAYER_COUNT, CIRCLE_SPLIT_MINI);
+        return sp.getInt(KEY_2_LAYER_COUNT, CIRCLE_SPLIT_MINI);
     }
 
     /*
     *
     * Color
+    * 設定主題顏色
+    *
     * */
     public void setColor(String colorCode){
         if(TextUtils.isEmpty(colorCode)){
             return;
         }
-        sharedPreferences.edit().putString(KEY_COLOR,colorCode).apply();
+        sp.edit().putString(KEY_COLOR,colorCode).apply();
     }
 
     public String getColor(){
-        return sharedPreferences.getString(KEY_COLOR, COLOR_ORANGE);
+        return sp.getString(KEY_COLOR, COLOR_ORANGE);
     }
 
+    //比主題顏色稍微淡一點的顏色
     public String getFadeColor(){
         return getFadeColor(getColor());
     }
@@ -130,13 +136,14 @@ public class Setting {
 
     /*
     *
+    * 是否呈現電池電量
     * */
     public void setShowBattery(boolean showBattery){
-        sharedPreferences.edit().putBoolean(KEY_SHOW_BATTERY, showBattery).apply();
+        sp.edit().putBoolean(KEY_SHOW_BATTERY, showBattery).apply();
     }
 
     public boolean isShowBattery(){
-        return sharedPreferences.getBoolean(KEY_SHOW_BATTERY, false);
+        return sp.getBoolean(KEY_SHOW_BATTERY, false);
     }
 
     public String[] getColorList(){

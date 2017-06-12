@@ -7,6 +7,7 @@ import android.os.BatteryManager;
 
 /**
  * Created by tim on 2016/4/28.
+ * 取得電量
  */
 public class BatteryTool {
 

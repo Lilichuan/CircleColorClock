@@ -28,6 +28,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
         reDraw(context, appWidgetManager, appWidgetId);
     }
 
+    //主要繪製函數
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
 
         WidgetTool widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW);
