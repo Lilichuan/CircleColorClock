@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Setting {
 
@@ -134,5 +137,17 @@ public class Setting {
 
     public boolean isShowBattery(){
         return sharedPreferences.getBoolean(KEY_SHOW_BATTERY, false);
+    }
+
+    public String[] getColorList(){
+        String[] l = new String[7];
+        l[0] = COLOR_GREEN;
+        l[1] = COLOR_PURPLE;
+        l[2] = COLOR_ORANGE;
+        l[3] = COLOR_BLUE;
+        l[4] = COLOR_RAD;
+        l[5] = COLOR_BARNEY;
+        l[6] = COLOR_YELLOW;
+        return l;
     }
 }

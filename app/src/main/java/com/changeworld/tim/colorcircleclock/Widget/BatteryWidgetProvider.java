@@ -30,10 +30,7 @@ public class BatteryWidgetProvider extends AppWidgetProvider {
 
     private void reDraw(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
 
-        Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
-        int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
-
-        WidgetTool widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW,h);
+        WidgetTool widgetTool = new WidgetTool(context, Setting.COLOR_YELLOW);
 
         if(batteryTool == null){
             batteryTool = new BatteryTool(context);

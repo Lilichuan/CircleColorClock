@@ -37,7 +37,7 @@ public class CircleWidgetProvider extends AppWidgetProvider {
         Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
         int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
 
-        widgetTool = new WidgetTool(context, Setting.COLOR_BLUE, h, 7);
+        widgetTool = new WidgetTool(context, Setting.COLOR_BLUE, 7);
 
         Calendar calendar = Calendar.getInstance(Locale.TAIWAN);
 

@@ -9,32 +9,55 @@ import android.graphics.RectF;
 import android.util.TypedValue;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
+import com.changeworld.tim.colorcircleclock.R;
 
 
 public class WidgetTool {
 
-    private int stroke_w,  widgetH;
+    //筆劃粗細 （單位是Pixel）
+    private int stroke_w ;
+    //小工具的高度 （單位是Pixel）
+    private int widgetH;
+    //小圓形的高度 （單位是Pixel）
     private float smaller_stroke_w;
 
+    //一個空心圓要被切成幾段。預設值是十段
     private int SPLIT = 10;
 
+    //用來繪製的畫布物件
     private Canvas canvas;
     private Bitmap bmp;
 
+    //主要畫筆 與 繪製指針區域的畫筆
+    private Paint paint ,selectPaint;
+
+    //360-(間隔數量*間隔角度)
+    private float totalUnitDegree;
+    //單一餅皮的所需角度
+    private float unitDegree;
+
+    //外層大圓範圍 與 內層小圓範圍
     private RectF percentRectF ,splitRectF;
 
-
-    public WidgetTool(Context context,String color, int w_InDP){
-        init(context, color, w_InDP);
+    public WidgetTool(Context context,String color){
+        init(context, color);
     }
 
-    public WidgetTool(Context context,String color, int w_InDP, int split){
+    public WidgetTool(Context context,String color, int split){
         SPLIT = split;
-        init(context, color, w_InDP);
+        init(context, color);
     }
 
-    private void init(Context context,String color, int w_InDP){
-        stroke_w = TypedValue.COMPLEX_UNIT_DIP * 10;
+    /**
+     * 初始化參數
+     * @param context
+     *
+     * @param color
+     * 色碼，字串
+     */
+    private void init(Context context,String color){
+        int w_InDP = (int) context.getResources().getDimension(R.dimen.widget_h);
+        stroke_w = TypedValue.COMPLEX_UNIT_DIP * 15;
         smaller_stroke_w = (float) (stroke_w * (0.7));
         widgetH = TypedValue.COMPLEX_UNIT_DIP * w_InDP;
 
@@ -45,9 +68,7 @@ public class WidgetTool {
     }
 
 
-
     private void initCanvas(){
-        //TODO 此行當機
         bmp = Bitmap.createBitmap(widgetH, widgetH, Bitmap.Config.ARGB_4444);
         canvas = new Canvas(bmp);
 
@@ -56,9 +77,9 @@ public class WidgetTool {
         splitRectF = new RectF(margin, margin, canvas.getWidth() - margin, canvas.getHeight() - margin);
     }
 
-    private Paint paint ,selectPaint;
-    private float totalUnitDegree, unitDegree;
 
+
+    //初始化繪製內圈圓圈的所需物件與參數
     private void initSplit(String selectColor, String fadeColor) {
         paint = new Paint();
         paint.setAntiAlias(true);
@@ -82,16 +103,14 @@ public class WidgetTool {
         unitDegree = totalUnitDegree - SEPARATE_DEGREE;
     }
 
-
+    //利用迴圈繪製每個餅皮
     private void drawSplitCanvas(int select){
-
         for (int i = 0 ; i < SPLIT ;i++){
-
-            if(i < select){
-                canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, selectPaint );
-            }else {
-                canvas.drawArc(splitRectF, totalUnitDegree*i - 90, unitDegree, false, paint );
-            }
+            canvas.drawArc(splitRectF,//弧形範圍長寬與位置座標
+                    totalUnitDegree*i - 90,//該餅皮起始角度，90是誤差調整
+                    unitDegree,//餅皮結束角度
+                    false,//空心圓形
+                    i < select ? selectPaint : paint);//繪製顏色
         }
 
     }

@@ -1,8 +1,14 @@
 package com.changeworld.tim.colorcircleclock.UI;
 
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +18,14 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.changeworld.tim.colorcircleclock.Data.Setting;
 import com.changeworld.tim.colorcircleclock.R;
+
+import java.util.Iterator;
+import java.util.List;
 
 
 public class SetFragment extends Fragment {
@@ -124,42 +134,18 @@ public class SetFragment extends Fragment {
         splitCountText.setText(getString(R.string.secondLayerSplitCount, count));
     }
 
+    private MyAdapter colorAdapter;
+
     private void initColorSelect(View root){
-        String[] colors = getResources().getStringArray(R.array.colors);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.selection_textview, colors);
+        String[] colorList = setting.getColorList();
+        colorAdapter = new MyAdapter(getContext(), R.layout.selection_textview);
+        colorAdapter.addAll(colorList);
         Spinner spinner = (Spinner)root.findViewById(R.id.select_color);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(colorAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String s;
-                switch (position){
-                    case 0:
-                        s = Setting.COLOR_GREEN;
-                        break;
-                    case 1:
-                        s = Setting.COLOR_PURPLE;
-                        break;
-                    case 2:
-                        s = Setting.COLOR_ORANGE;
-                        break;
-                    case 3:
-                        s = Setting.COLOR_BLUE;
-                        break;
-                    case 4:
-                        s = Setting.COLOR_RAD;
-                        break;
-                    case 5:
-                        s = Setting.COLOR_BARNEY;
-                        break;
-                    case 6:
-                        s = Setting.COLOR_YELLOW;
-                        break;
-                    default:
-                        s = Setting.COLOR_ORANGE;
-                }
-
-                setting.setColor(s);
+                setting.setColor(colorAdapter.getItem(position));
             }
 
             @Override
@@ -168,33 +154,50 @@ public class SetFragment extends Fragment {
             }
         });
 
-        int position;
+        int position = 0;
+        String color = setting.getColor();
 
-        switch (setting.getColor()){
-            case Setting.COLOR_GREEN:
-                position = 0;
-                break;
-            case Setting.COLOR_PURPLE:
-                position = 1;
-                break;
-            case Setting.COLOR_ORANGE:
-                position = 2;
-                break;
-            case Setting.COLOR_BLUE:
-                position = 3;
-                break;
-            case Setting.COLOR_RAD:
-                position = 4;
-                break;
-            case Setting.COLOR_BARNEY:
-                position = 5;
-                break;
-            default:
-                position = 2;
+        for (String s : colorList){
+            if(s.contentEquals(color)){
+                spinner.setSelection(position);
+                return;
+            }
+            position++;
         }
 
+    }
 
-        spinner.setSelection(position);
+    private class MyAdapter extends ArrayAdapter<String> implements SpinnerAdapter{
+        private LayoutInflater layoutInflater;
+        private String[] nameArray;
+
+        MyAdapter(@NonNull Context context, @LayoutRes int resource) {
+            super(context, resource);
+            layoutInflater = LayoutInflater.from(context);
+            nameArray = context.getResources().getStringArray(R.array.colors);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            return myGetView(position, convertView);
+        }
+
+        @Override
+        public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            return myGetView(position, convertView);
+        }
+
+        private View myGetView(int position, View convertView){
+            if(convertView == null){
+                convertView = layoutInflater.inflate(R.layout.selection_textview, null);
+            }
+
+            TextView textView = (TextView)convertView;
+            textView.setText(nameArray[position]);
+
+            return convertView;
+        }
     }
 
 

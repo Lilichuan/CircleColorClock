@@ -37,7 +37,7 @@ public class WorkWidgetProvider extends AppWidgetProvider {
         Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
         int h = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
 
-        widgetTool = new WidgetTool(context, Setting.COLOR_GREEN, h);
+        widgetTool = new WidgetTool(context, Setting.COLOR_GREEN);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
         int now = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
