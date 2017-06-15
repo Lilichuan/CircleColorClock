@@ -56,7 +56,7 @@ public class WidgetTool {
      * 色碼，字串
      */
     private void init(Context context,String color){
-        int w_InDP = (int) context.getResources().getDimension(R.dimen.widget_h);
+        int w_InDP = (int) context.getResources().getDimension(R.dimen.widget_max_h);
         stroke_w = TypedValue.COMPLEX_UNIT_DIP * 15;
         smaller_stroke_w = (float) (stroke_w * (0.7));
         widgetH = TypedValue.COMPLEX_UNIT_DIP * w_InDP;
